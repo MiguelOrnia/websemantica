@@ -26,7 +26,10 @@ Se incluira informacion de algunos tornados representativos de forma manual a mo
 Cuando sea pertinente, se podra incluir un enlace a la informacion sobre los mismos episodios en Wikidata. A modo de ejemplo, se puede observar como estan representados en Wikidata dos tornados: 
 - https://www.wikidata.org/wiki/Q4603245
 - https://www.wikidata.org/wiki/Q107339234
+
 El grafo de conocimiento tendra una documentacion sobre sus contenidos utilizando Shape Expressions o esquemas de entidades. 
+
+Permalinks:
 
 - Permalink Grafo de conocimiento 1: https://rdfshape.weso.es/link/16526953384
 - Permalink Grafo de conocimiento 2: https://rdfshape.weso.es/link/16526953749
