@@ -1,0 +1,46 @@
+prefix : <http://example.com/> 
+prefix st: <http://sweetontology.net/phenAtmoPrecipitation/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+:tornado3 rdf:type st:Tornado ;
+          :id 943554 ; 
+          :scale :EF1   ;
+          :length 0.51 ;
+          :width  50  ;
+          :state        :Florida ;
+          :county       :Manatee ;
+          :beginDate     "2021-04-10T16:45:00"^^xsd:dateTime ;
+          :personalDamage :personalDamage ; 
+          :materialDamage :materialDamage;
+          :source :NWSStormSurvey ;
+          :duration "PT60S"^^xsd:duration ;
+          :typeTornado :Land ; 
+          :events   :l1 .
+
+:materialDamage rdf:type :Damage;
+    :propertyDamage 1000000 ;
+    :cropDamage 0 .
+    
+:personalDamage rdf:type :Damage;
+    :injuries 1 ;
+    :deaths 0 .
+
+:eastTampa rdf:type :Event ;
+         :id 943558 ;
+         :beginDate "2021-04-10T16:36:00"^^xsd:dateTime ;
+         :state :Florida ;
+    	 :county :Hillsborough ;
+         :typeEvent :ThunderstormWind .
+    
+:bartowMuniArp rdf:type :Event ;
+         :id 943536 ;
+         :beginDate "2021-04-10T17:15:00"^^xsd:dateTime ;
+         :state :Florida ;
+         :county :Polk ;
+         :typeEvent :ThunderstormWind .
+
+:l1 rdf:first :eastTampa ;
+    rdf:rest :l2 .
+:l2 rdf:first :bartowMuniArp ;
+    rdf:rest :rdf:nil .

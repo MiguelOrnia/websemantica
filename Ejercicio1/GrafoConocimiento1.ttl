@@ -4,33 +4,43 @@ prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 :tornado rdf:type st:Tornado ;
+          :id 936510 ; 
           :scale :EF1   ;
           :length 0.85 ;
           :width  50  ;
           :state        :Florida ;
           :county       :Leon ;
           :beginDate     "2021-01-27T11:30:00"^^xsd:dateTime ;
-          :deaths 0 ;
-          :injuries 0 ;
-          :propertyDamage 5000 ;
-          :cropDamage 0 ;
-          :source "https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=936510"^^xsd:anyURI ;
+          :personalDamage :personalDamage ; 
+          :materialDamage :materialDamage;
+          :source :NWSStormSurvey ;
           :duration "PT60S"^^xsd:duration ;
-          :typeTornado :Terrestre ; 
-          :eventos   :l1 .
+          :typeTornado :Land ; 
+          :events   :l1 .
 
-:ocheessee1 rdf:type :Evento ;
+:materialDamage rdf:type :Damage;
+    :propertyDamage 5000 ;
+    :cropDamage 0 .
+    
+:personalDamage rdf:type :Damage;
+    :injuries 0 ;
+    :deaths 0 .
+
+:ocheessee rdf:type :Event ;
+         :id 936504 ;
          :beginDate "2021-01-27T08:36:00"^^xsd:dateTime ;
          :state :Florida ;
     	 :county :Calhoun ;
          :typeEvent :FunnelCloud .
-:andrew rdf:type :Evento ;
+    
+:andrew rdf:type :Event ;
+         :id 936511 ;
          :beginDate "2021-01-27T11:37:00"^^xsd:dateTime ;
          :state :Florida ;
          :county :Leon ;
          :typeEvent :Tornado .
 
-:l1 rdf:first :ocheessee1 ;
+:l1 rdf:first :ocheessee ;
     rdf:rest :l2 .
 :l2 rdf:first :andrew ;
     rdf:rest :rdf:nil .

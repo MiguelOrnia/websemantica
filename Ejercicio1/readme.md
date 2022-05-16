@@ -28,5 +28,7 @@ https://www.wikidata.org/wiki/Q4603245
 https://www.wikidata.org/wiki/Q107339234
 El grafo de conocimiento tendra una documentacion sobre sus contenidos utilizando Shape Expressions o esquemas de entidades. 
 
-Permalink: https://rdfshape.weso.es/link/16526099990
+Permalink Grafo de conocimiento 1: https://rdfshape.weso.es/link/16526953384
+Permalink Grafo de conocimiento 2: https://rdfshape.weso.es/link/16526953749
+Permalink Grafo de conocimiento 3: -
 
