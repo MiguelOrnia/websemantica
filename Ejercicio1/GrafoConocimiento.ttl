@@ -1,0 +1,36 @@
+prefix : <http://example.com/> 
+prefix st: <http://sweetontology.net/phenAtmoPrecipitation/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+:tornado rdf:type st:Tornado ;
+          :scale :EF1   ;
+          :length 0.85 ;
+          :width  50  ;
+          :state        :Florida ;
+          :county       :Leon ;
+          :beginDate     "2021-01-27T11:30:00"^^xsd:dateTime ;
+          :deaths 0 ;
+          :injuries 0 ;
+          :propertyDamage 5000 ;
+          :cropDamage 0 ;
+          :source "https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=936510"^^xsd:anyURI ;
+          :duration "PT60S"^^xsd:duration ;
+          :typeTornado :Terrestre ; 
+          :eventos   :l1 .
+
+:ocheessee1 rdf:type :Evento ;
+         :beginDate "2021-01-27T08:36:00"^^xsd:dateTime ;
+         :state :Florida ;
+    	 :county :Calhoun ;
+         :typeEvent :FunnelCloud .
+:andrew rdf:type :Evento ;
+         :beginDate "2021-01-27T11:37:00"^^xsd:dateTime ;
+         :state :Florida ;
+         :county :Leon ;
+         :typeEvent :Tornado .
+
+:l1 rdf:first :ocheessee1 ;
+    rdf:rest :l2 .
+:l2 rdf:first :andrew ;
+    rdf:rest :rdf:nil .
