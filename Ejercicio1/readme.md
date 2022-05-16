@@ -1,4 +1,4 @@
-# Ejercicio 1 (fecha 16/05/2022)
+# Ejercicio 1 (16/05/2022)
 Se creara un grafo de conocimiento con informacion sobre tornados. El grafo de conocimiento puede crearse mediante un triplestore RDF o una instancia de Wikibase.
 El grafo de conocimiento debera disponer de un endpoint SPARQL desplegado y accesible
 
