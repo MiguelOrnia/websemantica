@@ -11,6 +11,7 @@ Marcadores primarios:
 - Danios personales provocados
 - Danios materiales provocados
 - Fuente de la Informacion
+
 Marcadores secundarios:
 - Duracion del suceso
 - Recorrido en el suelo
