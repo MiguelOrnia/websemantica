@@ -2,6 +2,7 @@ prefix : <http://example.com/>
 prefix st: <http://sweetontology.net/phenAtmoPrecipitation/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
 
 :tornado2 rdf:type st:Tornado ;
           :id 993011 ; 
@@ -25,7 +26,7 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
     :injuries 0 ;
     :deaths 0 .
 
-:location rdf:type :Location;
+:location rdf:type schema:location;
     :country :US ;
     :state :Florida ;
     :county :Bradford .
