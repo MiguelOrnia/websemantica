@@ -8,15 +8,14 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
           :scale :EF1   ;
           :length 0.51 ;
           :width  50  ;
-          :state        :Florida ;
-          :county       :Manatee ;
+          :location :location ;
           :beginDate     "2021-04-10T16:45:00"^^xsd:dateTime ;
           :personalDamage :personalDamage ; 
           :materialDamage :materialDamage;
           :source :NWSStormSurvey ;
           :duration "PT60S"^^xsd:duration ;
           :typeTornado :Land ; 
-          :events   :l1 .
+          :events   ( :eastTampa :bartowMuniArp ) .
 
 :materialDamage rdf:type :Damage;
     :propertyDamage 1000000 ;
@@ -25,6 +24,11 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 :personalDamage rdf:type :Damage;
     :injuries 1 ;
     :deaths 0 .
+
+:location rdf:type :Location;
+    :country :US ;
+    :state :Florida ;
+    :county :Manatee .
 
 :eastTampa rdf:type :Event ;
          :id 943558 ;
@@ -39,8 +43,3 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
          :state :Florida ;
          :county :Polk ;
          :typeEvent :ThunderstormWind .
-
-:l1 rdf:first :eastTampa ;
-    rdf:rest :l2 .
-:l2 rdf:first :bartowMuniArp ;
-    rdf:rest :rdf:nil .

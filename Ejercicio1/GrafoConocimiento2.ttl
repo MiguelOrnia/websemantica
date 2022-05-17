@@ -8,15 +8,14 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
           :scale :EF1   ;
           :length 0.54 ;
           :width  200  ;
-          :state        :Florida ;
-          :county       :Bradford ;
+          :location :location ;
           :beginDate     "2021-12-08T17:20:00"^^xsd:dateTime ;
           :personalDamage :personalDamage ; 
           :materialDamage :materialDamage;
           :source :NWSStormSurvey ;
           :duration "PT120S"^^xsd:duration ;
           :typeTornado :Land ; 
-          :events   :l1 .
+          :events   ( :wellborn ) .
 
 :materialDamage rdf:type :Damage;
     :propertyDamage 0 ;
@@ -26,12 +25,14 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
     :injuries 0 ;
     :deaths 0 .
 
+:location rdf:type :Location;
+    :country :US ;
+    :state :Florida ;
+    :county :Bradford .
+
 :wellborn rdf:type :Event ;
          :id 993012 ;
          :beginDate "2021-12-08T16:00:00"^^xsd:dateTime ;
          :state :Florida ;
     	 :county :Suwannee ;
          :typeEvent :ThunderstormWind .
-
-:l1 rdf:first :wellborn ;
-    rdf:rest :rdf:nil .
