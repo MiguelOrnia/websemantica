@@ -1,26 +1,30 @@
 prefix : <http://example.com/> 
 prefix st: <http://sweetontology.net/phenAtmoPrecipitation/>
+prefix sostst: <http://sweetontology.net/stateStorm/>
+prefix sophatmoc: <http://sweetontology.net/phenAtmoCloud/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 prefix schema: <http://schema.org/>
+prefix gn: <http://www.geonames.org/ontology#>
+prefix wikidata: <http://www.wikidata.org/entity/>
+prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
 
 :tornado rdf:type st:Tornado ;
           :id 936510 ; 
-          :scale :EF1   ;
-          :length 0.85 ;
-          :width  50  ;
+          :scale "EF1"^^sostst:EnhancedFujitaScale  ;
+          :length [ rdf:type om:Measure; om:hasNumericalValue "0.85"^^xsd:double; om:hasUnit om:mile ] ;
+          :width  [ rdf:type om:Measure; om:hasNumericalValue "50"^^xsd:double; om:hasUnit om:yard-international ] ;
           :location :location ;
           :beginDate     "2021-01-27T11:30:00"^^xsd:dateTime ;
           :personalDamage :personalDamage ; 
           :materialDamage :materialDamage;
           :source :NWSStormSurvey ;
           :duration "PT60S"^^xsd:duration ;
-          :typeTornado :Land ; 
-          :events   ( :ocheessee :andrew ) .
+          :events   :ocheessee, :andrew .
 
 :materialDamage rdf:type :Damage;
-    :propertyDamage 5000 ;
-    :cropDamage 0 .
+    :propertyDamage [ rdf:type om:Measure; om:hasNumericalValue "5000"^^xsd:double; om:hasUnit om:UnitedStatesDollar ] ;
+    :cropDamage [ rdf:type om:Measure; om:hasNumericalValue "0"^^xsd:double; om:hasUnit om:UnitedStatesDollar ] .
     
 :personalDamage rdf:type :Damage;
     :injuries 0 ;
@@ -41,6 +45,13 @@ prefix schema: <http://schema.org/>
 :andrew rdf:type :Event ;
          :id 936511 ;
          :beginDate "2021-01-27T11:37:00"^^xsd:dateTime ;
-         :state :Florida ;
+         :state :FLorida ;
          :county :Leon ;
          :typeEvent :Tornado .
+
+:US rdf:type gn:countryCode .
+:Florida rdf:type schema:state .
+:Calhoun rdf:type wikidata:Q28575 .
+:Leon rdf:type wikidata:Q28575 .
+:FunnelCloud rdf:type sophatmoc:FunnelCloud .
+:Tornado rdf:type st:Tornado .
