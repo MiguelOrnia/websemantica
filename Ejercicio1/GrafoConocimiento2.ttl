@@ -10,8 +10,8 @@ prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
 
 :tornado2 rdf:type st:Tornado ;
           sostst:EnhancedFujitaScale sostst:EF1  ;
-          :length [ rdf:type om:Measure; om:hasNumericalValue "0.54"^^xsd:double; om:hasUnit om:mile-Statute ] ;
-          :width  [ rdf:type om:Measure; om:hasNumericalValue "200"^^xsd:double; om:hasUnit om:yard-International ] ;
+          :length [ rdf:type om:Measure; om:hasNumericalValue "0.54"^^xsd:decimal; om:hasUnit om:mile-Statute ] ;
+          :width  [ rdf:type om:Measure; om:hasNumericalValue "200.0"^^xsd:decimal; om:hasUnit om:yard-International ] ;
           schema:location :location ;
           :beginDate     "2021-12-08T17:20:00"^^xsd:dateTime ;
           :personalDamage :personalDamage ; 
@@ -21,8 +21,8 @@ prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
           :events   :wellborn .
 
 :materialDamage rdf:type :Damage;
-    :propertyDamage [ rdf:type om:Measure; om:hasNumericalValue "1000000"^^xsd:double; om:hasUnit om:UnitedStatesDollar ] ;
-    :cropDamage [ rdf:type om:Measure; om:hasNumericalValue "1000000"^^xsd:double; om:hasUnit om:UnitedStatesDollar ] .
+    :propertyDamage [ rdf:type om:Measure; om:hasNumericalValue "0.0"^^xsd:decimal; om:hasUnit om:UnitedStatesDollar ] ;
+    :cropDamage [ rdf:type om:Measure; om:hasNumericalValue "0.0"^^xsd:decimal; om:hasUnit om:UnitedStatesDollar ] .
     
 :personalDamage rdf:type :Damage;
     :injuries 0 ;
