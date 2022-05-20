@@ -5,19 +5,17 @@ prefix sophatmoc: <http://sweetontology.net/phenAtmoCloud/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 prefix schema: <http://schema.org/>
-prefix gn: <http://www.geonames.org/ontology#>
 prefix wikidata: <http://www.wikidata.org/entity/>
 prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
 
 :tornado2 rdf:type st:Tornado ;
-          :id 993011 ; 
-          :scale "EF1"^^sostst:EnhancedFujitaScale  ;
-          :length [ rdf:type om:Measure; om:hasNumericalValue "0.54"^^xsd:double; om:hasUnit om:mile ] ;
-          :width  [ rdf:type om:Measure; om:hasNumericalValue "200"^^xsd:double; om:hasUnit om:yard-international ] ;
-          :location :location ;
+          sostst:EnhancedFujitaScale sostst:EF1  ;
+          :length [ rdf:type om:Measure; om:hasNumericalValue "0.54"^^xsd:double; om:hasUnit om:mile-Statute ] ;
+          :width  [ rdf:type om:Measure; om:hasNumericalValue "200"^^xsd:double; om:hasUnit om:yard-International ] ;
+          schema:location :location ;
           :beginDate     "2021-12-08T17:20:00"^^xsd:dateTime ;
           :personalDamage :personalDamage ; 
-          :materialDamage :materialDamage;
+          :materialDamage :materialDamage ;
           :source :NWSStormSurvey ;
           :duration "PT120S"^^xsd:duration ;
           :events   :wellborn .
@@ -36,13 +34,12 @@ prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
     :county :Bradford .
 
 :wellborn rdf:type :Event ;
-         :id 993012 ;
          :beginDate "2021-12-08T16:00:00"^^xsd:dateTime ;
          :state :Florida ;
     	 :county :Suwannee ;
          :typeEvent :ThunderstormWind .
 
-:US rdf:type gn:countryCode .
+:US rdf:type wikidata:Q6256 .
 :Florida rdf:type schema:state .
 :Bradford rdf:type wikidata:Q28575 .
 :Suwannee rdf:type wikidata:Q28575 .
