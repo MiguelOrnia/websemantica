@@ -9,16 +9,16 @@ prefix wikidata: <http://www.wikidata.org/entity/>
 prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
 
 :tornado rdf:type st:Tornado ;
-          sostst:EnhancedFujitaScale sostst:EF1 ;
-          :length [ rdf:type om:Measure; om:hasNumericalValue "0.85"^^xsd:decimal; om:hasUnit om:mile-Statute ] ;
-          :width  [ rdf:type om:Measure; om:hasNumericalValue "50.0"^^xsd:decimal; om:hasUnit om:yard-International ] ;
-          schema:location :location ;
-          :beginDate     "2021-01-27T11:30:00"^^xsd:dateTime ;
-          :personalDamage :personalDamage ; 
-          :materialDamage :materialDamage ;
-          :source :NWSStormSurvey ;
-          :duration "PT60S"^^xsd:duration ;
-          :hasEvents   :ocheessee, :andrew .
+    sostst:EnhancedFujitaScale sostst:EF1 ;
+    :length [ rdf:type om:Measure; om:hasNumericalValue "0.85"^^xsd:decimal; om:hasUnit om:mile-Statute ] ;
+    :width  [ rdf:type om:Measure; om:hasNumericalValue "50.0"^^xsd:decimal; om:hasUnit om:yard-International ] ;
+    schema:location :location ;
+    :beginDate     "2021-01-27T11:30:00"^^xsd:dateTime ;
+    :personalDamage :personalDamage ; 
+    :materialDamage :materialDamage ;
+    :source :NWSStormSurvey ;
+    :duration "PT60S"^^xsd:duration ;
+    :hasEvents   :ocheessee, :andrew .
 
 :materialDamage rdf:type :Damage;
     :propertyDamage [ rdf:type om:Measure; om:hasNumericalValue "5000.0"^^xsd:decimal; om:hasUnit om:UnitedStatesDollar ] ;
@@ -31,19 +31,21 @@ prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
 :location rdf:type schema:location;
     :country :US ;
     :state :Florida ;
-    :county :Leon .
+    :county :Leon ;
+    :lat 30.4182 ;
+    :long -84.5522 .
 
 :ocheessee rdf:type :Event ;
-         :beginDate "2021-01-27T08:36:00"^^xsd:dateTime ;
-         :state :Florida ;
-    	 :county :Calhoun ;
-         :typeEvent sophatmoc:FunnelCloud .
+    :beginDate "2021-01-27T08:36:00"^^xsd:dateTime ;
+    :state :Florida ;
+    :county :Calhoun ;
+    :typeEvent sophatmoc:FunnelCloud .
     
 :andrew rdf:type :Event ;
-         :beginDate "2021-01-27T11:37:00"^^xsd:dateTime ;
-         :state :Florida ;
-         :county :Leon ;
-         :typeEvent st:Tornado .
+    :beginDate "2021-01-27T11:37:00"^^xsd:dateTime ;
+    :state :Florida ;
+    :county :Leon ;
+    :typeEvent st:Tornado .
 
 :US rdf:type wikidata:Q6256 .
 :Florida rdf:type schema:state .

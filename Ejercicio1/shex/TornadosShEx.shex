@@ -1,0 +1,56 @@
+prefix : <http://example.com/>
+prefix st: <http://sweetontology.net/phenAtmoPrecipitation/>
+prefix sostst: <http://sweetontology.net/stateStorm/>
+prefix sophatmoc: <http://sweetontology.net/phenAtmoCloud/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+prefix wikidata: <http://www.wikidata.org/entity/>
+prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
+
+<Tornado> {
+  rdf:type [ st:Tornado ] ;
+  sostst:EnhancedFujitaScale [sostst:~];
+  :length @<Unit> ;
+  :width @<Unit>;
+  schema:location @<Location> ;
+  :beginDate xsd:dateTime ;
+  :personalDamage @<PersonalDamage> ;
+  :materialDamage @<MaterialDamage> ;
+  :source . ;
+  :duration xsd:duration ;
+  :hasEvents @<Event> *
+}
+
+<Unit> {
+  rdf:type [ om:Measure ];
+  om:hasNumericalValue xsd:decimal;
+  om:hasUnit [om:~]
+}
+
+<PersonalDamage> {
+  rdf:type [ :Damage ] ;
+  :injuries xsd:integer ;
+  :deaths xsd:integer
+}
+
+<MaterialDamage> {
+  rdf:type [ :Damage ] ;
+  :propertyDamage @<Unit> ;
+  :cropDamage @<Unit>
+}
+
+<Location>{
+  rdf:type [ schema:location ] ;
+  :country . ;
+  :state . ;
+  :county .
+}
+
+<Event>{
+  rdf:type [ :Event ] ;
+  :beginDate xsd:dateTime ;
+  :state . ;
+  :county . ;
+  :typeEvent [sophatmoc:~ st:~ :~]
+}
