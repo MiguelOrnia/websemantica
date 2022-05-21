@@ -33,7 +33,7 @@ prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
     :state :Florida ;
     :county :Manatee ;
     :lat 27.4364 ;
-    :long -82.6084 ;
+    :long -82.6084 .
 
 :eastTampa rdf:type :Event ;
     :beginDate "2021-04-10T16:36:00"^^xsd:dateTime ;

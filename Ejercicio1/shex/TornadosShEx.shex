@@ -40,14 +40,16 @@ prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
   :cropDamage @<Unit>
 }
 
-<Location>{
+<Location> {
   rdf:type [ schema:location ] ;
   :country . ;
   :state . ;
-  :county .
+  :county . ;
+  :lat xsd:decimal ;
+  :long xsd:decimal
 }
 
-<Event>{
+<Event> {
   rdf:type [ :Event ] ;
   :beginDate xsd:dateTime ;
   :state . ;
