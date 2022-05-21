@@ -1,37 +1,15 @@
-# Ejercicio 1 (16/05/2022)
-Se creara un grafo de conocimiento con informacion sobre tornados. El grafo de conocimiento puede crearse mediante un triplestore RDF o una instancia de Wikibase.
-El grafo de conocimiento debera disponer de un endpoint SPARQL desplegado y accesible
+# Ejercicio 1
 
-Algunas propiedades o marcadores que se podran incluir en son los siguientes:
+El contenido de este ejercicio se distribuye de la siguiente forma:
+- Carpeta **graphs**: Incluye los tres grafos de conocimiento (RDF) desarrollados.
+- Carpeta **shex**: Incluye la shape expression correspondiente a los grafos de conocimiento creados.
 
-Marcadores primarios:
-- Fecha y hora del suceso
-- Localizacion (pais, estado/region, municipio)
-- Magnitud (escala Fujita mejorada)
-- Danios personales provocados
-- Danios materiales provocados
-- Fuente de la Informacion
+Los tornados empleados para los grafos de conocimientos son los siguientes:
+- **Grafo de conocimiento 1:** https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=936510
+- **Grafo de conocimiento 2:** https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=993011
+- **Grafo de conocimiento 3:** https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=943554
 
-Marcadores secundarios:
-- Duracion del suceso
-- Recorrido en el suelo
-- Terrestre o marino
-- Velocidad maxima del viento generado
-- Velocidad de desplazamiento del tornado
-- Anchura del tornado
-- Otros eventos o meteoros asociados (granizo, lluvia, descargas electricas)
-- Observaciones varias
-
-Cada grupo creara las propiedades y el modelo de datos que considere adecuado para representar la informacion anterior. 
-Se incluira informacion de algunos tornados representativos de forma manual a modo de ejemplos. 
-Cuando sea pertinente, se podra incluir un enlace a la informacion sobre los mismos episodios en Wikidata. A modo de ejemplo, se puede observar como estan representados en Wikidata dos tornados: 
-- https://www.wikidata.org/wiki/Q4603245
-- https://www.wikidata.org/wiki/Q107339234
-
-El grafo de conocimiento tendra una documentacion sobre sus contenidos utilizando Shape Expressions o esquemas de entidades. 
-
-Permalinks:
-
-- Permalink Grafo de conocimiento 1: https://rdfshape.weso.es/link/16526953384
-- Permalink Grafo de conocimiento 2: https://rdfshape.weso.es/link/16526953749
-- Permalink Grafo de conocimiento 3: -
+En nuestra instancia de **Wikibase** se introdujeron manualmente los tres tornados citados previamente. Los enlaces para acceder a dichos tornados son los siguientes:
+- **Tornado de Leon (Florida, EEUU)** acontecido en 2021 correspondiente con el grafo de conocimiento 1: http://156.35.98.119/wiki/Item:Q4
+- **Tornado de Bradford (Florida, EEUU)** acontecido en 2021 correspondiente con el grafo de conocimiento 2: http://156.35.98.119/wiki/Item:Q19
+- **Tornado de Manatee (Florida, EEUU)** acontencido en 2021 correspondiente con el grafo de conocimiento 3: -
