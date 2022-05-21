@@ -12,4 +12,4 @@ Los tornados empleados para los grafos de conocimientos son los siguientes:
 En nuestra instancia de **Wikibase** se introdujeron manualmente los tres tornados citados previamente. Los enlaces para acceder a dichos tornados son los siguientes:
 - **Tornado de Leon (Florida, EEUU)** acontecido en 2021 correspondiente con el grafo de conocimiento 1: http://156.35.98.119/wiki/Item:Q4
 - **Tornado de Bradford (Florida, EEUU)** acontecido en 2021 correspondiente con el grafo de conocimiento 2: http://156.35.98.119/wiki/Item:Q19
-- **Tornado de Manatee (Florida, EEUU)** acontencido en 2021 correspondiente con el grafo de conocimiento 3: -
+- **Tornado de Manatee (Florida, EEUU)** acontencido en 2021 correspondiente con el grafo de conocimiento 3: http://156.35.98.119/wiki/Item:Q24
