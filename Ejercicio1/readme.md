@@ -9,7 +9,7 @@ El ejercicio se compone de dos carpetas que se detallan a continuación:
 Los tornados empleados (obtenidos de la **Storm Events Database**) para la elaboración de los grafos de conocimientos son los siguientes:
 - Datos del **grafo de conocimiento 1:** https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=936510
 - Datos del **grafo de conocimiento 2:** https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=993011
-- Datos del **Grafo de conocimiento 3:** https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=943554
+- Datos del **grafo de conocimiento 3:** https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=943554
 
 ## Instancia de Wikibase creada y rellenada con los tornados
 En nuestra instancia de **Wikibase** se introdujeron manualmente los tres tornados citados previamente. Los enlaces para acceder a dichos tornados son los siguientes:
