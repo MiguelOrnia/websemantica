@@ -52,7 +52,7 @@ prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
 <Event> {
   rdf:type [ :Event ] ;
   :beginDate xsd:dateTime ;
-  :state . ;
-  :county . ;
+  :eventState . ;
+  :eventCounty . ;
   :typeEvent [sophatmoc:~ st:~ :~]
 }

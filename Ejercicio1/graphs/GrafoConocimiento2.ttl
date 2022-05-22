@@ -37,8 +37,8 @@ prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
 
 :wellborn rdf:type :Event ;
     :beginDate "2021-12-08T16:00:00"^^xsd:dateTime ;
-    :state :Florida ;
-    :county :Suwannee ;
+    :eventState :Florida ;
+    :eventCounty :Suwannee ;
     :typeEvent :ThunderstormWind .
 
 :US rdf:type wikidata:Q6256 .
