@@ -19,6 +19,9 @@ prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
   :materialDamage @<MaterialDamage> ;
   :source . ;
   :duration xsd:duration ;
+  :movementSpeed @<Unit>;
+  :maxWindSpeed @<Unit>;
+  :isLand xsd:boolean ;
   :hasEvents @<Event> *
 }
 

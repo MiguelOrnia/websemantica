@@ -18,6 +18,9 @@ prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
     :materialDamage :materialDamage ;
     :source :NWSStormSurvey ;
     :duration "PT60S"^^xsd:duration ;
+    :movementSpeed [ rdf:type om:Measure; om:hasNumericalValue "30.6"^^xsd:decimal; om:hasUnit om:mile-StatutePerHour ] ; 
+    :maxWindSpeed [ rdf:type om:Measure; om:hasNumericalValue "0.0"^^xsd:decimal; om:hasUnit om:mile-StatutePerHour ] ; 
+    :isLand true ;
     :hasEvents   :eastTampa, :bartowMuniArp .
 
 :materialDamage rdf:type :Damage;
