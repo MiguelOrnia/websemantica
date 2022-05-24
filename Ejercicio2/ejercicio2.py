@@ -9,8 +9,8 @@ def scrapping():
     url = "https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=943554"
     page = requests.get(url);
     soup = BeautifulSoup(page.content, 'html.parser')
-    tornado = soup.table.find_all('td')
-    return tornado
+    tornadoInfo = soup.table.find_all('td')
+    return tornadoInfo
 
 
 tornado = scrapping()
@@ -22,6 +22,20 @@ def obtenerInfo(tornado):
         info.append(campo.text)
     info = np.delete(info, (0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40))
     return info;
+
+
+def createWikiBase():
+    credentials = {
+        "bot_username": "Admin",
+        "bot_password": "bot@9eomjq89fmimaa11t2gilnkh64ed398p",
+    }
+
+    wikibase = Wikibase(api_url='http://156.35.98.119/w/api.php',
+                  oauth_credentials=None,
+                  login_credentials=credentials,
+                  is_bot=True)
+
+    return wikibase
 
 
 info = obtenerInfo(tornado)
@@ -48,16 +62,6 @@ injuries = info[16].split('/')[0]
 propertyDamage = info[18] + " United States dollar"
 cropDamage = info[19] + " United States dollar"
 
-credentials = {
-    "bot_username": "Admin",
-    "bot_password": "bot@9eomjq89fmimaa11t2gilnkh64ed398p",
-}
-
-wb = Wikibase(api_url='http://156.35.98.119/w/api.php',
-              oauth_credentials=None,
-              login_credentials=credentials,
-              is_bot=True)
-
 beginDateObject = datetime(int(añoBegin), int(mesBegin), int(beginDate.split(" ")[0].split("-")[2]),
                            int(beginDate.split(" ")[1].split(":")[0]), int(beginDate.split(" ")[1].split(":")[1]), 00,
                            00000)
@@ -70,6 +74,8 @@ duration = (endDateObject - beginDateObject).total_seconds()
 duration_hours = duration / 3600
 
 movementSpeed = float(length.split(" ")[0]) / duration_hours
+
+wb = createWikiBase()
 
 entity = wb.entity.add("item")
 
