@@ -13,7 +13,27 @@ def scrapping():
     return tornadoInfo
 
 
+def scrappingEvents():
+    url = "https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=943554"
+    page = requests.get(url);
+    soup = BeautifulSoup(page.content, 'html.parser')
+    table = soup.find(id="episode_results")
+    tornadoInfo = table.find_all('tr')
+    infoEvents = list()
+    tornadoInfo.pop()
+    for i in range(2, len(tornadoInfo)):
+        infoEvents.append(tornadoInfo[i].text)
+    events = list()
+    for i in range(0, len(infoEvents)):
+        events.append(infoEvents[i].split("\n"))
+    return events
+
+
 tornado = scrapping()
+
+listEvents = scrappingEvents()
+
+print(listEvents)
 
 
 def obtenerInfo(tornado):
@@ -41,6 +61,49 @@ def createWikiBase():
 wb = createWikiBase()
 
 
+
+def findEvents(events):
+    entities = list()
+    for event in events:
+        label = event[1] + event[4].split("/")[2]
+        r = wb.entity.search(label, 'en')['search']
+        if len(r) > 0:
+            entities.append(r[0].get('id'))
+        else:
+            date = event[4].split("/")[0] + "-" + event[4].split("/")[1] + "-" + event[4].split("/")[2] + event[5]
+            idCounty = findEntity(event[2].split(" ")[0])
+            typeEvent = findEntity(event[7])
+            newEntity = wb.entity.add("item")
+            content = {"labels": {"en": {"language": "en", "value": "tornado" + info[5] + " " + añoBegin + " " + entity['entity']['id']}},
+                               "descriptions": {'en': {'language': 'en', 'value': 'weather event'}},
+                                "claims": {'P3': [{'mainsnak': {'snaktype': 'value', 'property': 'P12',
+                                           'datavalue': {'value': '2021-01-27T11:30:00', 'type': 'string'},
+                                           'datatype': 'edtf'}, 'type': 'statement',
+                                            'rank': 'normal'},
+                                            {'mainsnak': {'snaktype': 'value', 'property': 'P17',
+                                           'datavalue': {
+                                               'value': {'entity-type': 'item', 'numeric-id': 18, 'id': 'Q18'},
+                                               'type': 'wikibase-entityid'}, 'datatype': 'wikibase-item'},
+                              'type': 'statement', 'rank': 'normal'},
+                             {'mainsnak': {'snaktype': 'value', 'property': 'P8', 'datavalue': {
+                                 'value': {'entity-type': 'item', 'numeric-id': idCounty.split('Q')[1],
+                                           'id': idCounty},
+                                 'type': 'wikibase-entityid'},
+                                           'datatype': 'wikibase-item'}, 'type': 'statement',
+                              'rank': 'normal'},
+                             {'mainsnak': {'snaktype': 'value', 'property': 'P17', 'datavalue': {
+                                 'value': {'entity-type': 'item', 'numeric-id': typeEvent.split("Q")[1],
+                                           'id': typeEvent},
+                                 'type': 'wikibase-entityid'},
+                                           'datatype': 'wikibase-item'}, 'type': 'statement',
+                              'rank': 'normal'}]}
+
+                        }
+            wb.entity.update(newEntity["entity"]["id"], content=content)
+            entities.append(newEntity["entity"]["id"])
+
+    return entities;
+
 def findEntity(label):
     r = wb.entity.search(label, 'es')['search']
     if len(r) > 0:
@@ -48,6 +111,7 @@ def findEntity(label):
     else:
         newEntity = wb.entity.add("item")
         entityContent = {"labels": {"en": {"language": "en", "value": label}}}
+
         wb.entity.update(newEntity["entity"]["id"], content=entityContent)
         return newEntity["entity"]["id"]
 
@@ -58,7 +122,6 @@ instanceOf = info[0]
 scale = info[1]
 length = float(info[2].split(" ")[0])
 width = float(info[3].split(" ")[0])
-country = "United States"
 state = info[4]
 county = info[5]
 source = info[7]
@@ -67,10 +130,9 @@ mesBegin = info[9].split('-')[1]
 añoEnd = info[12].split('-')[0]
 mesEnd = info[12].split('-')[1]
 endDate = info[12]
-beginDate = info[9 ]
+beginDate = info[9]
 lat = float(info[11].split('/')[0])
 lon = float(info[11].split('/')[1])
-duration = ""
 deaths = info[15].split('/')[0]
 injuries = info[16].split('/')[0]
 propertyDamage = float(info[17].split("M")[0])
@@ -96,73 +158,71 @@ idState.split('Q')[1]
 
 entity = wb.entity.add("item")
 
-content = {"labels": {"en": {"language": "en", "value": info[5] + " Tornado " + añoBegin}},
-           "descriptions": {'en': {'language': 'en', 'value': 'weather event'}},
-           "claims": {'P3': [{'mainsnak': {'snaktype': 'value', 'property': 'P3',
-                                           'datavalue': {'value': {'entity-type': 'item', 'numeric-id': 5, 'id': 'Q5'},
-                                                         'type': 'wikibase-entityid'}, 'datatype': 'wikibase-item'},
-                              'type': 'statement', 'rank': 'normal'}],
-                      'P18': [{'mainsnak': {'snaktype': 'value', 'property': 'P18',
-                                            'datavalue': {'value': {'entity-type': 'item', 'numeric-id': 7, 'id': 'Q7'},
-                                                          'type': 'wikibase-entityid'}, 'datatype': 'wikibase-item'},
-                               'type': 'statement', 'rank': 'normal'}],
-                      'P9': [{'mainsnak': {'snaktype': 'value', 'property': 'P9', 'datavalue': {
-                          'value': {'amount': length, 'unit': 'http://156.35.98.119/entity/Q8'}, 'type': 'quantity'},
-                                           'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
-                      'P10': [{'mainsnak': {'snaktype': 'value', 'property': 'P10', 'datavalue': {
-                          'value': {'amount': width, 'unit': 'http://156.35.98.119/entity/Q9'}, 'type': 'quantity'},
-                                            'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
-                      'P5': [{'mainsnak': {'snaktype': 'value', 'property': 'P5', 'datavalue': {
-                          'value': {'entity-type': 'item', 'numeric-id': 10, 'id': 'Q10'}, 'type': 'wikibase-entityid'},
-                                           'datatype': 'wikibase-item'}, 'type': 'statement', 'rank': 'normal'}],
-                      'P6': [{'mainsnak': {'snaktype': 'value', 'property': 'P6', 'datavalue': {
-                          'value': {'entity-type': 'item', 'numeric-id': idState.split('Q')[1], 'id': idState},
-                          'type': 'wikibase-entityid'},
-                                           'datatype': 'wikibase-item'}, 'type': 'statement', 'rank': 'normal'}],
-                      'P8': [{'mainsnak': {'snaktype': 'value', 'property': 'P8', 'datavalue': {
-                          'value': {'entity-type': 'item', 'numeric-id': idCounty.split('Q')[1], 'id': idCounty},
-                          'type': 'wikibase-entityid'},
-                                           'datatype': 'wikibase-item'}, 'type': 'statement', 'rank': 'normal'}],
-                      'P16': [{'mainsnak': {'snaktype': 'value', 'property': 'P16',
-                                            'datavalue': {'value': source, 'type': 'string'},
-                                            'datatype': 'string'}, 'type': 'statement', 'rank': 'normal'}],
-                      'P15': [{'mainsnak': {'snaktype': 'value', 'property': 'P15', 'datavalue': {
-                          'value': {'amount': duration, 'unit': 'http://156.35.98.119/entity/Q13'}, 'type': 'quantity'},
-                                            'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
-                      'P21': [{'mainsnak': {'snaktype': 'value', 'property': 'P21',
-                                            'datavalue': {'value': {'amount': injuries, 'unit': '1'}, 'type': 'quantity'},
-                                            'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
-                      'P22': [{'mainsnak': {'snaktype': 'value', 'property': 'P22',
-                                            'datavalue': {'value': {'amount': deaths, 'unit': '1'}, 'type': 'quantity'},
-                                            'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
-                      'P23': [{'mainsnak': {'snaktype': 'value', 'property': 'P23', 'datavalue': {
-                          'value': {'amount': propertyDamage, 'unit': 'http://156.35.98.119/entity/Q14'}, 'type': 'quantity'},
-                                            'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
-                      'P24': [{'mainsnak': {'snaktype': 'value', 'property': 'P24', 'datavalue': {
-                          'value': {'amount': cropDamage, 'unit': 'http://156.35.98.119/entity/Q14'}, 'type': 'quantity'},
-                                            'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
-                      'P17': [{'mainsnak': {'snaktype': 'value', 'property': 'P17', 'datavalue': {
-                          'value': {'entity-type': 'item', 'numeric-id': 15, 'id': 'Q15'}, 'type': 'wikibase-entityid'},
-                                            'datatype': 'wikibase-item'}, 'type': 'statement', 'rank': 'normal'}, {
-                                  'mainsnak': {'snaktype': 'value', 'property': 'P17', 'datavalue': {
-                                      'value': {'entity-type': 'item', 'numeric-id': 18, 'id': 'Q18'},
-                                      'type': 'wikibase-entityid'}, 'datatype': 'wikibase-item'}, 'type': 'statement',
-                                  'rank': 'normal'}],
+content = {
+    "labels": {"en": {"language": "en", "value": "tornado" + info[5] + " " + añoBegin + " " + entity['entity']['id']}},
+    "descriptions": {'en': {'language': 'en', 'value': 'weather event'}},
+    "claims": {'P3': [{'mainsnak': {'snaktype': 'value', 'property': 'P3',
+                                    'datavalue': {'value': {'entity-type': 'item', 'numeric-id': 5, 'id': 'Q5'},
+                                                  'type': 'wikibase-entityid'}, 'datatype': 'wikibase-item'},
+                       'type': 'statement', 'rank': 'normal'}],
+               'P18': [{'mainsnak': {'snaktype': 'value', 'property': 'P18',
+                                     'datavalue': {'value': {'entity-type': 'item', 'numeric-id': 7, 'id': 'Q7'},
+                                                   'type': 'wikibase-entityid'}, 'datatype': 'wikibase-item'},
+                        'type': 'statement', 'rank': 'normal'}],
+               'P9': [{'mainsnak': {'snaktype': 'value', 'property': 'P9', 'datavalue': {
+                   'value': {'amount': length, 'unit': 'http://156.35.98.119/entity/Q8'}, 'type': 'quantity'},
+                                    'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
+               'P10': [{'mainsnak': {'snaktype': 'value', 'property': 'P10', 'datavalue': {
+                   'value': {'amount': width, 'unit': 'http://156.35.98.119/entity/Q9'}, 'type': 'quantity'},
+                                     'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
+               'P5': [{'mainsnak': {'snaktype': 'value', 'property': 'P5', 'datavalue': {
+                   'value': {'entity-type': 'item', 'numeric-id': 10, 'id': 'Q10'}, 'type': 'wikibase-entityid'},
+                                    'datatype': 'wikibase-item'}, 'type': 'statement', 'rank': 'normal'}],
+               'P6': [{'mainsnak': {'snaktype': 'value', 'property': 'P6', 'datavalue': {
+                   'value': {'entity-type': 'item', 'numeric-id': idState.split('Q')[1], 'id': idState},
+                   'type': 'wikibase-entityid'},
+                                    'datatype': 'wikibase-item'}, 'type': 'statement', 'rank': 'normal'}],
+               'P8': [{'mainsnak': {'snaktype': 'value', 'property': 'P8', 'datavalue': {
+                   'value': {'entity-type': 'item', 'numeric-id': idCounty.split('Q')[1], 'id': idCounty},
+                   'type': 'wikibase-entityid'},
+                                    'datatype': 'wikibase-item'}, 'type': 'statement', 'rank': 'normal'}],
+               'P16': [{'mainsnak': {'snaktype': 'value', 'property': 'P16',
+                                     'datavalue': {'value': source, 'type': 'string'},
+                                     'datatype': 'string'}, 'type': 'statement', 'rank': 'normal'}],
+               'P15': [{'mainsnak': {'snaktype': 'value', 'property': 'P15', 'datavalue': {
+                   'value': {'amount': duration, 'unit': 'http://156.35.98.119/entity/Q13'}, 'type': 'quantity'},
+                                     'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
+               'P21': [{'mainsnak': {'snaktype': 'value', 'property': 'P21',
+                                     'datavalue': {'value': {'amount': injuries, 'unit': '1'},
+                                                   'type': 'quantity'},
+                                     'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
+               'P22': [{'mainsnak': {'snaktype': 'value', 'property': 'P22',
+                                     'datavalue': {'value': {'amount': deaths, 'unit': '1'}, 'type': 'quantity'},
+                                     'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
+               'P23': [{'mainsnak': {'snaktype': 'value', 'property': 'P23', 'datavalue': {
+                   'value': {'amount': propertyDamage, 'unit': 'http://156.35.98.119/entity/Q14'},
+                   'type': 'quantity'},
+                                     'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
+               'P24': [{'mainsnak': {'snaktype': 'value', 'property': 'P24', 'datavalue': {
+                   'value': {'amount': cropDamage, 'unit': 'http://156.35.98.119/entity/Q14'},
+                   'type': 'quantity'},
+                                     'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
+               'P17': findEvents(listEvents),
 
-                      'P26': [{'mainsnak': {'snaktype': 'value', 'property': 'P26',
-                                            'datavalue': {'value': {'amount': lat, 'unit': '1'},
-                                                          'type': 'quantity'}, 'datatype': 'quantity'},
-                               'type': 'statement', 'rank': 'normal'}],
-                      'P27': [{'mainsnak': {'snaktype': 'value', 'property': 'P27',
-                                            'datavalue': {'value': {'amount': lon, 'unit': '1'},
-                                                          'type': 'quantity'}, 'datatype': 'quantity'},
-                               'type': 'statement', 'rank': 'normal'}],
-                      'P28': [{'mainsnak': {'snaktype': 'value', 'property': 'P28', 'datavalue': {
-                          'value': {'amount': movementSpeed, 'unit': 'http://156.35.98.119/entity/Q59'},
-                          'type': 'quantity'},
-                                            'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}]
+               'P26': [{'mainsnak': {'snaktype': 'value', 'property': 'P26',
+                                     'datavalue': {'value': {'amount': lat, 'unit': '1'},
+                                                   'type': 'quantity'}, 'datatype': 'quantity'},
+                        'type': 'statement', 'rank': 'normal'}],
+               'P27': [{'mainsnak': {'snaktype': 'value', 'property': 'P27',
+                                     'datavalue': {'value': {'amount': lon, 'unit': '1'},
+                                                   'type': 'quantity'}, 'datatype': 'quantity'},
+                        'type': 'statement', 'rank': 'normal'}],
+               'P28': [{'mainsnak': {'snaktype': 'value', 'property': 'P28', 'datavalue': {
+                   'value': {'amount': movementSpeed, 'unit': 'http://156.35.98.119/entity/Q59'},
+                   'type': 'quantity'},
+                                     'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}]
 
-                      }}
+               }}
 
 updated = wb.entity.update(entity["entity"]["id"], content=content)
 
