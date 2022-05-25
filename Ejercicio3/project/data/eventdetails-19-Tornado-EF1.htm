@@ -1,0 +1,933 @@
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Storm Events Database - Event Details | National Centers for Environmental Information</title>
+
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="Description" content="The Storm Events Database contains records on various types of severe weather, as collected by NOAA's National Weather Service (NWS)." />
+<meta name="Keywords" content="ncdc, noaa, nws, plsr, lsr, historical, tornado, hail, winds, casualities, fatalities" />
+<meta name="author" content="NCEI" />
+<link rel="shortcut icon" href="/stormevents/favicon.ico" />
+
+<link rel="stylesheet" type="text/css" href="/stormevents/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/stormevents/css/application.css" />
+<link rel="stylesheet" type="text/css" href="/stormevents/css/stormevents.css" />
+<link rel="stylesheet" type="text/css" href="/stormevents/css/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="/stormevents/css/leaflet.css" />
+<link rel="stylesheet" type="text/css" href="/stormevents/css/leaflet-measure.css" />
+
+</head>
+<body>
+
+<div id="background">
+
+	<div id="wrap">
+		<div id="main">
+
+<div id="header">
+	<div class="inset">
+		<div class="title"><a href="/" title="National Centers for Environmental Information">National Centers for Environmental Information<span></span></a></div>
+		<a href="http://www.commerce.gov" id="headDOC" title="Click to visit the U.S. Department of Commerce Website"></a>
+	</div>
+</div>
+
+
+<div id="nav">
+	<ul class="topLinks">
+		<li><a href="/">Home</a></li>
+		<li><a href="http://www.ncdc.noaa.gov/customer-support">Contact Us</a></li>
+		<li><a href="http://www.ncdc.noaa.gov/about">About NCEI</a></li>
+		<li><a href="http://www.ncdc.noaa.gov/customer-support">Help</a></li>
+	</ul>
+	<div class="clear"></div>
+</div>
+<!-- /Header -->
+
+			<!-- Main Content Area -->
+			<div id="content">
+
+
+
+
+	<!-- Must remain outside of "pad" div -->
+	<div id="crumbs">
+		<a href="/">NCEI</a> &gt; <a href="/stormevents/" >Storm Events Database (Select State)</a>
+			
+	</div>
+	
+	<!-- / -->
+	<div class="pad">
+		<div class="col-2-left-220">
+			<div class="boxblock">
+        <div class="header"><h4>Storm Events Database</h4></div>
+        <div class="pad">
+                <ul>
+                        <li class="subheader">Data Access</li>
+
+                        <li><a href="/stormevents/">Search</a></li>
+                        <li><a href="/stormevents/ftp.jsp"> Bulk Data Download (CSV) </a></li>
+                        <li><a href="https://www.ncdc.noaa.gov/IPS/sd/sd.html"> Storm Data Publication </a></li>
+                        <li class="subheader">Documentation</li>
+                        <li><a href="/stormevents/details.jsp"> Database Details </a></li>
+                        <li><a href="/stormevents/versions.jsp"> Version History </a></li>
+                        <li><a href="/stormevents/faq.jsp"> Storm Data FAQ </a></li>
+                        <li><a href="https://www.nws.noaa.gov/directives/sym/pd01016005curr.pdf"> NOAA's NWS Documentation </a></li>
+                        <li><a href="https://www.spc.noaa.gov/efscale">Tornado EF Scale</a></li>
+                        <li class="subheader">External Resources</li>
+                        <li><a href="https://www.spc.noaa.gov/climo">NOAA's SPC Reports</a></li>
+                        <li><a href="https://www.spc.noaa.gov/wcm/index.html">NOAA's SPC WCM Page</a></li>
+                        <li><a href="https://apps.dat.noaa.gov/stormdamage/damageviewer/">NOAA's NWS Damage Assessment Toolkit</a></li>
+                        <li><a href="https://www.ngdc.noaa.gov/hazard/tsu.shtml">NOAA's Tsunami Database</a></li>
+                        <li><a onclick="alert('You are exiting the NCEI website.\n\nThank you for visiting our site. We have provided a link because it has information that may interest you. NCEI does not endorse the views expressed, the information presented, or any commercial products that may be advertised or available on that site.')" 
+                        	href="https://www.arcgis.com/home/item.html?id=990b93d2522441a48bf2aaf536518419">ESRI/FEMA Civil Air Patrol Images</a></li>                        
+                        <li><a onclick="alert('You are exiting the NCEI website.\n\nThank you for visiting our site. We have provided a link because it has information that may interest you. NCEI does not endorse the views expressed, the information presented, or any commercial products that may be advertised or available on that site.')" 
+                        	href="https://www.sheldus.org">SHELDUS</a></li>
+                        <li><a onclick="alert('You are exiting the NCEI website.\n\nThank you for visiting our site. We have provided a link because it has information that may interest you. NCEI does not endorse the views expressed, the information presented, or any commercial products that may be advertised or available on that site.')" 
+                        	href="https://www.rma.usda.gov/data/cause.html">USDA Cause of Loss Data </a></li>
+
+                </ul>
+
+        </div>
+</div>
+
+
+		</div>					
+		
+		<div class="col-2-right-700">
+
+						
+			<h1>Storm Events Database</h1>
+			<h4>Event Details:</h4>
+			
+			<table border="1" width="100%">
+  <tr> 
+     <td>Event</td>
+     <td><b>Tornado</b></td>
+  </tr> 
+  <tr> 
+     <td>-- Scale</td>
+     <td><b>EF1</b></td>
+  </tr> 
+  <tr> 
+     <td>-- Length</td>
+     <td><b>5.06 Miles</b></td>
+  </tr> 
+  <tr> 
+     <td>-- Width</td>
+     <td><b>250 Yards</b></td>
+  </tr> 
+  <tr> 
+     <td>State</td>
+     <td><b>OHIO</b></td>
+  </tr> 
+  <tr> 
+     <td>County/Area</td>
+     <td><b>GREENE</b></td>
+  </tr> 
+  <tr> 
+     <td>WFO</td>
+     <td><b>ILN</b></td>
+  </tr> 
+  <tr> 
+     <td>Report Source</td>
+     <td><b>NWS Storm Survey</b></td>
+  </tr> 
+  <tr> 
+     <td>NCEI Data Source</td>
+     <td><b>CSV</b></td>
+  </tr> 
+  <tr> 
+     <td>Begin Date</td>
+     <td><b>2019-05-27 22:48 EST-5</b></td>
+  </tr> 
+  <tr> 
+     <td>Begin Location</td>
+     <td><b>3WSW GRAPE GROVE</b></td>
+  </tr> 
+  <tr> 
+     <td>Begin Lat/Lon</td>
+     <td><b>39.7068/-83.7342</b></td>
+  </tr> 
+  <tr> 
+     <td>End Date</td>
+     <td><b>2019-05-27 22:55 EST-5</b></td>
+  </tr> 
+  <tr> 
+     <td>End Location</td>
+     <td><b>3SSE GRAPE GROVE</b></td>
+  </tr> 
+  <tr> 
+     <td>End Lat/Lon</td>
+     <td><b>39.6842/-83.6564</b></td>
+  </tr> 
+  <tr> 
+     <td>Deaths Direct/Indirect</td>
+     <td><b>0/0</b> (fatality details below, when available...)</td>
+  </tr> 
+  <tr> 
+     <td>Injuries Direct/Indirect</td>
+     <td><b>0/0</b></td>
+  </tr> 
+  <tr> 
+     <td>Property Damage</td>
+     <td><b>50.00K</b></td>
+  </tr> 
+  <tr> 
+     <td>Crop Damage</td>
+     <td><b>0.00K</b></td>
+  </tr> 
+  <tr> 
+     <td>Episode Narrative</td>
+     <td><b>Thunderstorms developed during the evening hours along a warm front lifting slowly north across the region. Many of the thunderstorms produced tornadoes, including a few strong to violent tornadoes.</b></td>
+  </tr> 
+  <tr> 
+     <td>Event Narrative</td>
+     <td><b>This tornado appears to have begun on Lackey Road, where the first visible signs of tree damage were observed. The tornado is believed to have then moved across the field between Lackey Road and South Charleston Road.<br/>
+
+Damage was next observed on Paullin Road, where one residence had minor structural damage with some roof and siding removed. Additionally, multiple large tree limbs were downed in the vicinity. There was also a power pole that was knocked down along Paullin Road. Evidence of a tornadic circulation could be seen in the field to the southeast of Paullin Road.<br/>
+
+The most significant damage from this tornado occurred along Watkins Road, where splatter of mud, dirt and insulation were observed on all sides of a residence. Several windows were blown in, with some roof and siding damage observed on multiple sides of the home. The carport was also destroyed. Damage at this residence was consistent with EF1 tornadic damage. The tornado then continued east, crossing into Fayette County at 2255EST, about 4 mile northeast of Jamestown. The tornado then came to an end at 2257EST, about 1.3 miles north-northwest of Pleasant View.</b></td>
+  </tr> 
+</table>
+
+			
+		</div>
+		
+	<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;
+
+			<!-- Narrative Image from Publication for 1959 to 1992 -->		
+<!-- 			<div> 		 -->
+	
+					
+		
+		
+		<!-- a href="#" id="evtinfoImage">Narrative image comes from...</a>  -->
+		
+		​<br/><br/>
+		
+		
+		
+		
+		
+		<div id="map-section"> 
+<h4>Event Map:</h4> 
+Note: The tornado track is approximate based on the beginning (B) and ending (E) locations. The actual tornado path may differ from a straight line.<div id="map" "></div> 
+<script src="js/leaflet.js"></script> 
+<script src="js/leaflet-measure.min.js"></script> 
+<script> 
+var Esri_Imagery = L.tileLayer('//server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { 
+    attribution: '&copy; Esri &mdash; Sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, swisstopo, and the GIS User Community' 
+}); 
+var Esri_DeLorme = L.tileLayer('//server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/tile/{z}/{y}/{x}', { 
+   attribution: 'Tiles &copy; Esri &mdash; Copyright: &copy;2012 DeLorme', 
+   minZoom: 1, 
+   maxZoom: 11 
+}); 
+var Esri_WorldStreetMap = L.tileLayer('//server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { 
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012' 
+}); 
+var Esri_WorldTopoMap = L.tileLayer('//server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', { 
+	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community' 
+}); 
+var map = L.map('map', { 
+  center: [39.7068, -83.7342], 
+  zoom: 9, 
+  layers: [Esri_WorldTopoMap] 
+}); 
+var baseMaps = { 
+	    "Streets": Esri_WorldStreetMap, 
+	    "Imagery": Esri_Imagery, 
+	    "Topo": Esri_WorldTopoMap, 
+     "ESRI/DeLorme": Esri_DeLorme 
+	}; 
+L.control.layers(baseMaps).addTo(map); 
+var measureControl = new L.Control.Measure({ activeColor: '#442236', completedColor: '#b4a6ae' }); 
+measureControl.addTo(map); 
+L.circle([39.7068, -83.7342], 100, { 
+  color: 'red', 
+  fillColor: '#f03', 
+  fillOpacity: 0.5 
+  }).addTo(map); 
+ var begIcon = new L.Icon.Default({ iconUrl: 'js/images/marker-icon-beg.png' }); 
+ var endIcon = new L.Icon.Default({ iconUrl: 'js/images/marker-icon-end.png' }); 
+ var startInfo = "Starting location: 3 WSW GRAPE GROVE<br/>05/27/2019 2248 EST-5<br/>Scale: EF1, Width: 250 Yards, Length: 5.06 Miles "; 
+ var endInfo = "Ending location: 3 SSE GRAPE GROVE<br/>05/27/2019 2255 EST-5<br/>Scale: EF1, Width: 250 Yards, Length: 5.06 Miles "; 
+L.marker([39.7068, -83.7342], {icon: begIcon} 
+  ).addTo(map).bindPopup(startInfo); 
+L.circle([39.6842, -83.6564], 100, { 
+  color: 'red', 
+  fillColor: '#f03', 
+  fillOpacity: 0.5 
+  }).addTo(map); 
+L.marker([39.6842, -83.6564], {icon: endIcon} 
+ ).addTo(map).bindPopup(endInfo); 
+var pointA = new L.LatLng(39.7068, -83.7342); 
+var pointB = new L.LatLng(39.6842, -83.6564); 
+var pointList = [pointA, pointB]; 
+var polyline = new L.Polyline(pointList, { 
+  color: 'red', 
+  weight: 5, 
+  opacity: 0.5, 
+  smoothFactor: 1 
+}); 
+polyline.addTo(map); 
+	</script> 
+</div> 
+
+		
+		
+		
+<!-- 		</div> -->
+
+
+		<br/><br/>
+		<h4>All events for this episode: </h4>
+		<table id="episode_results" border="1" width="100%">
+<tr><th><a href="#" title="Nearest Town, 'Countywide' or Zone Name">Location</a></th>
+<th><a href="#" title="County, Parish or Zone">County/Zone</a></th>
+<th><a href="#" title="State">St.</a></th>
+<th><a href="#" title="Date of Event">Date</a></th>
+<th><a href="#" title="Time of Event (Local Time)">Time</a></th>
+<th><a href="#" title="Time Zone">T.Z.</a></th>
+<th><a href="#" title="Event Type">Type</a></th>
+<th><a href="#" title="Magnitude of Event, where applicable">Mag</a></th>
+<th><a href="#" title="Direct Deaths from the Event">Dth</a></th>
+<th><a href="#" title="Direct Injuries from the Event">Inj</a></th>
+<th><a href="#" title="Property Damage Estimate">PrD</a></th>
+<th><a href="#" title="Crop Damage Estimate">CrD</a></th></tr>
+<tr><td><b>Totals:</b></td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td>1</td>
+<td>175</td>
+<td>582.222M</td>
+<td>0.00K</td></tr>
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818164 ">BRYON</a></td> 
+    <td>GREENE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    10:15</td> 
+    <td>EST-5</td> 
+    <td>Hail</td> 
+    <td>1.75  in.</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818166 ">TIPP CITY</a></td> 
+    <td>MIAMI CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    10:30</td> 
+    <td>EST-5</td> 
+    <td>Hail</td> 
+    <td>0.75  in.</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818165 ">CEDARVILLE</a></td> 
+    <td>GREENE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    10:31</td> 
+    <td>EST-5</td> 
+    <td>Hail</td> 
+    <td>1.75  in.</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818167 ">MONROE</a></td> 
+    <td>BUTLER CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    15:58</td> 
+    <td>EST-5</td> 
+    <td>Thunderstorm Wind</td> 
+    <td>45  kts. EG</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>1.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818168 ">OTTERBEIN</a></td> 
+    <td>WARREN CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    16:10</td> 
+    <td>EST-5</td> 
+    <td>Thunderstorm Wind</td> 
+    <td>50  kts. EG</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>3.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818169 ">LEBANON WARREN CO AR</a></td> 
+    <td>WARREN CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    16:15</td> 
+    <td>EST-5</td> 
+    <td>Thunderstorm Wind</td> 
+    <td>59  kts. MG</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818111 ">GLEN KARN</a></td> 
+    <td>DARKE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    20:48</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF1</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>100.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=817483 ">DURBIN</a></td> 
+    <td>MERCER CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    21:02</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF3</td> 
+    <td>1</td> 
+    <td>8</td> 
+    <td>15.000M</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818110 ">NEW MADISON</a></td> 
+    <td>DARKE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    21:04</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF1</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>500.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=817672 ">PITSBURG</a></td> 
+    <td>DARKE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    21:25</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF1</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>50.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818170 ">GORDON</a></td> 
+    <td>DARKE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    21:28</td> 
+    <td>EST-5</td> 
+    <td>Hail</td> 
+    <td>1.00  in.</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=817681 ">POTSDAM</a></td> 
+    <td>MIAMI CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    21:28</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF3</td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>10.000M</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818109 ">MOULTON</a></td> 
+    <td>AUGLAIZE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    21:33</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF1</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>500.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=816403 ">PYRMONT</a></td> 
+    <td>MONTGOMERY CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    21:41</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF4</td> 
+    <td>0</td> 
+    <td>166</td> 
+    <td>500.000M</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818162 ">EVANSTON</a></td> 
+    <td>MIAMI CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    21:45</td> 
+    <td>EST-5</td> 
+    <td>Thunderstorm Wind</td> 
+    <td>52  kts. EG</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>100.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818128 ">ST JOHNS</a></td> 
+    <td>AUGLAIZE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    21:47</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF0</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>50.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818159 ">TROY SKYPARK ARPT</a></td> 
+    <td>MIAMI CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    21:47</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF0</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>50.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818138 ">WAYNESFIELD</a></td> 
+    <td>AUGLAIZE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:01</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF0</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>10.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818160 ">ALCONY</a></td> 
+    <td>MIAMI CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:08</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF0</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>10.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818171 ">SULPHUR GROVE</a></td> 
+    <td>MONTGOMERY CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:11</td> 
+    <td>EST-5</td> 
+    <td>Hail</td> 
+    <td>1.00  in.</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=817478 ">EASTVIEW</a></td> 
+    <td>MONTGOMERY CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:12</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF2</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>500.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818176 ">ZIMMERMAN</a></td> 
+    <td>GREENE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:12</td> 
+    <td>EST-5</td> 
+    <td>Hail</td> 
+    <td>0.75  in.</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=817480 ">NEW GERMANY</a></td> 
+    <td>GREENE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:13</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF3</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>50.000M</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818173 ">BRYON</a></td> 
+    <td>GREENE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:15</td> 
+    <td>EST-5</td> 
+    <td>Hail</td> 
+    <td>1.75  in.</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818172 ">NEW GERMANY</a></td> 
+    <td>GREENE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:15</td> 
+    <td>EST-5</td> 
+    <td>Hail</td> 
+    <td>1.00  in.</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818113 ">GARLAND</a></td> 
+    <td>MIAMI CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:19</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF0</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>20.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818119 ">MEYER ARPT</a></td> 
+    <td>MONTGOMERY CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:20</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF0</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>50.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818123 ">YELVERTON</a></td> 
+    <td>HARDIN CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:28</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF0</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>25.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818174 ">YELLOW SPGS</a></td> 
+    <td>GREENE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:29</td> 
+    <td>EST-5</td> 
+    <td>Hail</td> 
+    <td>1.75  in.</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818175 ">CEDARVILLE</a></td> 
+    <td>GREENE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:31</td> 
+    <td>EST-5</td> 
+    <td>Hail</td> 
+    <td>1.75  in.</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=817685 ">SPANKER</a></td> 
+    <td>MONTGOMERY CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:34</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF2</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>1.000M</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=817748 ">GRAPE GROVE</a></td> 
+    <td>GREENE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:48</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF1</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>50.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=817749 ">PLEASANT VIEW</a></td> 
+    <td>FAYETTE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    22:55</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF0</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>3.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=817747 ">JAMESTOWN</a></td> 
+    <td>GREENE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    23:23</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF0</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>200.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818177 ">CEDARVILLE</a></td> 
+    <td>GREENE CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    23:30</td> 
+    <td>EST-5</td> 
+    <td>Flash Flood</td> 
+    <td></td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818384 ">HAYESVILLE</a></td> 
+    <td>PICKAWAY CO.</td> 
+    <td>OH</td> 
+    <td>05/27/2019</td> 
+    <td>    23:57</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF1</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>1.000M</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818383 ">STRINGTOWN</a></td> 
+    <td>PICKAWAY CO.</td> 
+    <td>OH</td> 
+    <td>05/28/2019</td> 
+    <td>    00:09</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF1</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>1.500M</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=817746 ">SOUTH PERRY</a></td> 
+    <td>HOCKING CO.</td> 
+    <td>OH</td> 
+    <td>05/28/2019</td> 
+    <td>    00:17</td> 
+    <td>EST-5</td> 
+    <td>Tornado</td> 
+    <td>EF2</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>1.500M</td> 
+    <td>0.00K</td> 
+  </tr> 
+  <tr> 
+    <td><a href="eventdetails.jsp?id=818178 ">STOUTSVILLE</a></td> 
+    <td>FAIRFIELD CO.</td> 
+    <td>OH</td> 
+    <td>05/28/2019</td> 
+    <td>    01:00</td> 
+    <td>EST-5</td> 
+    <td>Flood</td> 
+    <td></td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0.00K</td> 
+    <td>0.00K</td> 
+  </tr> 
+<tr><td><b>Totals:</b></td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td>1</td>
+<td>175</td>
+<td>582.222M</td>
+<td>0.00K</td></tr>
+</table>
+
+		
+
+	   
+	   	<div class="clear"></div>
+
+	</div><!-- /pad -->
+
+
+
+                  </div><!-- /content -->
+		</div><!-- /main -->
+
+		
+
+<div id="footer">
+	<div class="links"><a href="http://www.noaa.gov/privacy.html" title="Privacy Policy">Privacy Policy</a> | 
+	<a href="http://www.rdc.noaa.gov/%7Efoia/" title="FOIA">FOIA</a> | 
+	<a href="http://www.cio.noaa.gov/services_programs/info_quality.html" title="Information Quality">Information Quality</a> | 
+	<a href="http://www.noaa.gov/disclaimer.html" title="Disclaimer">Disclaimer</a> | 
+	<a href="http://www.ncdc.noaa.gov/customer-support" title="Customer Support">Contact Us</a></div>
+
+	<div class="subfooter">
+		<a href="http://www.commerce.gov/"><img src="/stormevents/images/logos/logo_doc.png" alt="Department of Commerce" title="Department of Commerce" /></a>
+		<a href="http://www.usa.gov"><img src="/stormevents/images/logos/logo_usagov.png" alt="USA.gov" title="USA.gov" /></a>
+		<a href="http://www.ready.gov"><img src="/stormevents/images/logos/logo_ready.png" alt="Ready.gov" title="Ready.gov" /></a>
+	</div><!-- /subfooter -->
+
+</div><!-- /footer -->
+
+	</div><!-- /wrap -->
+
+</div><!-- /background -->
+
+
+
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42795060-3', 'noaa.gov');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+<script id="_fed_an_ua_tag" type="text/javascript" src="/scripts/federated-analytics.js?agency=DOC%26subagency=NOAA"></script></body>
+</html>
