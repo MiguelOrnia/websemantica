@@ -68,8 +68,8 @@ añoEnd = info[12].split('-')[0]
 mesEnd = info[12].split('-')[1]
 endDate = info[12]
 beginDate = info[9 ]
-lat = info[11].split('/')[0]
-lon = info[11].split('/')[1]
+lat = float(info[11].split('/')[0])
+lon = float(info[11].split('/')[1])
 duration = ""
 deaths = info[15].split('/')[0]
 injuries = info[16].split('/')[0]
@@ -141,6 +141,26 @@ content = {"labels": {"en": {"language": "en", "value": info[5] + " Tornado " + 
                       'P24': [{'mainsnak': {'snaktype': 'value', 'property': 'P24', 'datavalue': {
                           'value': {'amount': cropDamage, 'unit': 'http://156.35.98.119/entity/Q14'}, 'type': 'quantity'},
                                             'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
+                      'P17': [{'mainsnak': {'snaktype': 'value', 'property': 'P17', 'datavalue': {
+                          'value': {'entity-type': 'item', 'numeric-id': 15, 'id': 'Q15'}, 'type': 'wikibase-entityid'},
+                                            'datatype': 'wikibase-item'}, 'type': 'statement', 'rank': 'normal'}, {
+                                  'mainsnak': {'snaktype': 'value', 'property': 'P17', 'datavalue': {
+                                      'value': {'entity-type': 'item', 'numeric-id': 18, 'id': 'Q18'},
+                                      'type': 'wikibase-entityid'}, 'datatype': 'wikibase-item'}, 'type': 'statement',
+                                  'rank': 'normal'}],
+
+                      'P26': [{'mainsnak': {'snaktype': 'value', 'property': 'P26',
+                                            'datavalue': {'value': {'amount': lat, 'unit': '1'},
+                                                          'type': 'quantity'}, 'datatype': 'quantity'},
+                               'type': 'statement', 'rank': 'normal'}],
+                      'P27': [{'mainsnak': {'snaktype': 'value', 'property': 'P27',
+                                            'datavalue': {'value': {'amount': lon, 'unit': '1'},
+                                                          'type': 'quantity'}, 'datatype': 'quantity'},
+                               'type': 'statement', 'rank': 'normal'}],
+                      'P28': [{'mainsnak': {'snaktype': 'value', 'property': 'P28', 'datavalue': {
+                          'value': {'amount': movementSpeed, 'unit': 'http://156.35.98.119/entity/Q59'},
+                          'type': 'quantity'},
+                                            'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}]
 
                       }}
 
