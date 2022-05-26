@@ -20,7 +20,7 @@ class WikibaseApi:
         }
         self.wb = Wikibase(
             api_url=self.INSTANCE_URL,
-            oauth_credentials=None,
+            oauth_credentials={},
             login_credentials=self.credentials,
             is_bot=True
         )

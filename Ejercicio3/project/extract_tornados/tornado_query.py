@@ -3,11 +3,10 @@
 
 class TornadoQuery:
     """ Constructor de la clase TornadoQuery donde se reciben la fecha de inicio, el condado y la duracion """
-    def __init__(self, begindate, county, duration, scale):
+    def __init__(self, begindate, county, duration):
         self.begindate = begindate
         self.county = county
         self.duration = duration
-        self.scale = scale
 
     """ Metodo  de la clase TornadoQuery que devuelve la consulta a realizar en la instancia 
     de Wikibase """

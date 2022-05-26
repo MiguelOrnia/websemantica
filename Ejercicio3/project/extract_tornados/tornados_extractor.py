@@ -8,7 +8,7 @@ tornados existentes en la Storms Events Database """
 
 
 class TornadoScrapping:
-
+    """ Ubicacion de los HTML dentro del proyecto """
     HTML_PATH = "data/"
 
     """ Constructor de la clase TornadoScrapping """
@@ -17,27 +17,37 @@ class TornadoScrapping:
 
     """ Metodo de la clase TornadoScrapping encargado de cargar los diferentes HTML existentes para
     extraer posteriormente sus narrativas """
-    def cargarDocumentos(self):
+    def cargar_documentos(self):
         for fichero in os.listdir(self.HTML_PATH):
             contenido = open(self.HTML_PATH + fichero, "r").read()
             self.informes.append(contenido)
         return self.informes
 
-    """ Metodo de la clase TornadoScrapping encargado de extraer el texto correspondiente a la narrativa 
-    de un tornado """
-    def extraer_narrativa(self, contenido):
+    """ Metodo privado de la clase TornadoScrapping encargado de extraer cierta informacion de los HTML """
+    def __extraer_informacion(self, contenido, elemento):
         soup = BeautifulSoup(contenido, 'html.parser')
         todos_tds = soup.find_all("td")
 
-        narrative = ""
+        dato = ""
 
         for i in range(len(todos_tds)):
             contenidos_td = todos_tds[i].contents
-            if 'Event Narrative' in contenidos_td:
-                narrative = todos_tds[i + 1].get_text()
+            if elemento in contenidos_td:
+                dato = todos_tds[i + 1].get_text()
                 break
 
-        return narrative
+        return dato
+
+    """ Metodo de la clase TornadoScrapping encargado de extraer el texto correspondiente a la narrativa 
+    de un tornado """
+    def extraer_narrativa(self, contenido):
+        return self.__extraer_informacion(contenido, 'Event Narrative')
+
+    """ Metodo de la clase TornadoScrapping encargado de extraer la escala de un tornado. 
+     Este dato es necesario para obtener la velocidad del viento de un tornado en caso de que 
+     no se pueda determinar mendiante la narrativa existente """
+    def extraer_escala(self, contenido):
+        return self.__extraer_informacion(contenido, '-- Scale')
 
     """ Metodo encargado en obtener la consulta a realizar en la API de Wikibase """
     def buscar_info(self, contenido):
@@ -79,17 +89,3 @@ class TornadoScrapping:
         duration = "+" + str(int((endDateObject - beginDateObject).total_seconds()))
         tornadoQuery = TornadoQuery(beginDate, county, duration, scale)
         return tornadoQuery
-
-    def extraer_escala(self, contenido):
-        soup = BeautifulSoup(contenido, 'html.parser')
-        todos_tds = soup.find_all("td")
-
-        scale = ""
-
-        for i in range(len(todos_tds)):
-            contenidos_td = todos_tds[i].contents
-            if '-- Scale' in contenidos_td:
-                scale = todos_tds[i + 1].get_text()
-                break
-
-        return scale
