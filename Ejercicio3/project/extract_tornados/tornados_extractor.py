@@ -2,12 +2,13 @@ import os
 from datetime import datetime
 from bs4 import BeautifulSoup
 from extract_tornados.tornado_query import TornadoQuery
+from util.date_helper import DateHelper
 
-""" Clase TornadoScrapping encargada de obtener la informacion de los HTML relativa a los diferentes 
+""" Clase TornadoExtractor encargada de obtener la informacion de los HTML relativa a los diferentes 
 tornados existentes en la Storms Events Database """
 
 
-class TornadoScrapping:
+class TornadoExtractor:
     """ Ubicacion de los HTML dentro del proyecto """
     HTML_PATH = "data/"
 
@@ -15,7 +16,7 @@ class TornadoScrapping:
     def __init__(self):
         self.informes = []
 
-    """ Metodo de la clase TornadoScrapping encargado de cargar los diferentes HTML existentes para
+    """ Metodo de la clase TornadoExtractor encargado de cargar los diferentes HTML existentes para
     extraer posteriormente sus narrativas """
     def cargar_documentos(self):
         for fichero in os.listdir(self.HTML_PATH):
@@ -23,7 +24,7 @@ class TornadoScrapping:
             self.informes.append(contenido)
         return self.informes
 
-    """ Metodo privado de la clase TornadoScrapping encargado de extraer cierta informacion de los HTML """
+    """ Metodo privado de la clase TornadoExtractor encargado de extraer cierta informacion de los HTML """
     def __extraer_informacion(self, contenido, elemento):
         soup = BeautifulSoup(contenido, 'html.parser')
         todos_tds = soup.find_all("td")
@@ -38,7 +39,7 @@ class TornadoScrapping:
 
         return dato
 
-    """ Metodo de la clase TornadoScrapping encargado de extraer el texto correspondiente a la narrativa 
+    """ Metodo de la clase TornadoExtractor encargado de extraer el texto correspondiente a la narrativa 
     de un tornado """
     def extraer_narrativa(self, contenido):
         return self.__extraer_informacion(contenido, 'Event Narrative')
@@ -49,9 +50,9 @@ class TornadoScrapping:
     def extraer_escala(self, contenido):
         return self.__extraer_informacion(contenido, '-- Scale')
 
-    """ Metodo encargado en obtener la consulta a realizar en la API de Wikibase """
+    """ Metodo de la clase TornadoExtractor encargado en obtener la consulta a realizar en la API de Wikibase """
     def buscar_info(self, contenido):
-        # Extraer info del html
+        date_helper = DateHelper()
         soup = BeautifulSoup(contenido, 'html.parser')
         todos_tds = soup.find_all("td")
 
@@ -60,32 +61,32 @@ class TornadoScrapping:
             if 'County/Area' in contenidos_td:
                 county = todos_tds[i + 1].get_text()
             if 'Begin Date' in contenidos_td:
-                beginDate = todos_tds[i + 1].get_text()
+                begin_date = todos_tds[i + 1].get_text()
             if 'End Date' in contenidos_td:
-                endDate = todos_tds[i + 1].get_text()
+                end_date = todos_tds[i + 1].get_text()
                 break
 
-        yearBegin = beginDate.split(" ")[0].split("-")[0]
-        monthBegin = beginDate.split(" ")[0].split("-")[1]
-        dayBegin = beginDate.split(" ")[0].split("-")[2]
-        minutesBegin = beginDate.split(" ")[1].split(":")[0]
-        secondsBegin = beginDate.split(" ")[1].split(":")[1]
+        year_begin = date_helper.calcular_anio(begin_date)
+        month_begin = date_helper.calcular_mes(begin_date)
+        day_begin = date_helper.calcular_dia(begin_date)
+        minutes_begin = date_helper.calcular_minutos(begin_date)
+        seconds_begin = date_helper.calcular_segundos(begin_date)
 
-        yearEnd = endDate.split(" ")[0].split("-")[0]
-        monthEnd = endDate.split(" ")[0].split("-")[1]
-        dayEnd = endDate.split(" ")[0].split("-")[2]
-        minutesEnd = endDate.split(" ")[1].split(":")[0]
-        secondsEnd = endDate.split(" ")[1].split(":")[1]
+        year_end = date_helper.calcular_anio(end_date)
+        month_end = date_helper.calcular_mes(end_date)
+        day_end = date_helper.calcular_dia(end_date)
+        minutes_end = date_helper.calcular_minutos(end_date)
+        seconds_end = date_helper.calcular_segundos(end_date)
 
-        # Calcular duración (end date - begin date)
-        beginDateObject = datetime(int(yearBegin), int(monthBegin), int(dayBegin),
-                                   int(minutesBegin), int(secondsBegin),
+        begin_date_object = datetime(int(year_begin), int(month_begin), int(day_begin),
+                                   int(minutes_begin), int(seconds_begin),
                                    00,
                                    00000)
-        endDateObject = datetime(int(yearEnd), int(monthEnd), int(dayEnd),
-                                 int(minutesEnd), int(secondsEnd),
+        end_date_object = datetime(int(year_end), int(month_end), int(day_end),
+                                 int(minutes_end), int(seconds_end),
                                  00,
                                  00000)
-        duration = "+" + str(int((endDateObject - beginDateObject).total_seconds()))
-        tornadoQuery = TornadoQuery(beginDate, county, duration, scale)
-        return tornadoQuery
+        scale = self.extraer_escala(contenido)
+        duration = "+" + str(int((end_date_object - begin_date_object).total_seconds()))
+        tornado_query = TornadoQuery(begin_date, county, duration, scale)
+        return tornado_query
