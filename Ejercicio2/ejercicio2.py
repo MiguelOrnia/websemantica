@@ -61,7 +61,6 @@ def createWikiBase():
 wb = createWikiBase()
 
 
-
 def findEvents(events):
     entities = list()
     for event in events:
@@ -70,39 +69,53 @@ def findEvents(events):
         if len(r) > 0:
             entities.append(r[0].get('id'))
         else:
-            date = event[4].split("/")[0] + "-" + event[4].split("/")[1] + "-" + event[4].split("/")[2] + event[5]
+            date = event[4].split("/")[2] + "-" + event[4].split("/")[0] + "-" + event[4].split("/")[1] + "T" + event[
+                5].strip() + ":00"
             idCounty = findEntity(event[2].split(" ")[0])
             typeEvent = findEntity(event[7])
             newEntity = wb.entity.add("item")
-            content = {"labels": {"en": {"language": "en", "value": "tornado" + info[5] + " " + añoBegin + " " + entity['entity']['id']}},
-                               "descriptions": {'en': {'language': 'en', 'value': 'weather event'}},
-                                "claims": {'P3': [{'mainsnak': {'snaktype': 'value', 'property': 'P12',
-                                           'datavalue': {'value': '2021-01-27T11:30:00', 'type': 'string'},
-                                           'datatype': 'edtf'}, 'type': 'statement',
-                                            'rank': 'normal'},
-                                            {'mainsnak': {'snaktype': 'value', 'property': 'P17',
-                                           'datavalue': {
-                                               'value': {'entity-type': 'item', 'numeric-id': 18, 'id': 'Q18'},
-                                               'type': 'wikibase-entityid'}, 'datatype': 'wikibase-item'},
-                              'type': 'statement', 'rank': 'normal'},
-                             {'mainsnak': {'snaktype': 'value', 'property': 'P8', 'datavalue': {
-                                 'value': {'entity-type': 'item', 'numeric-id': idCounty.split('Q')[1],
-                                           'id': idCounty},
-                                 'type': 'wikibase-entityid'},
-                                           'datatype': 'wikibase-item'}, 'type': 'statement',
-                              'rank': 'normal'},
-                             {'mainsnak': {'snaktype': 'value', 'property': 'P17', 'datavalue': {
-                                 'value': {'entity-type': 'item', 'numeric-id': typeEvent.split("Q")[1],
-                                           'id': typeEvent},
-                                 'type': 'wikibase-entityid'},
-                                           'datatype': 'wikibase-item'}, 'type': 'statement',
-                              'rank': 'normal'}]}
+            content = {"labels": {
+                "en": {"language": "en", "value": añoBegin + " " + event[2].split(" ")[0] + " " + newEntity['entity']['id']}},
+                "descriptions": {'en': {'language': 'en', 'value': event[7]}},
+                "claims": {'P12': [{'mainsnak': {'snaktype': 'value', 'property': 'P12',
+                                                 'datavalue': {'value': date, 'type': 'string'},
+                                                 'datatype': 'edtf'}, 'type': 'statement',
+                                    'rank': 'normal'}],
+                           'P8': [{'mainsnak': {'snaktype': 'value', 'property': 'P8', 'datavalue': {
+                               'value': {'entity-type': 'item', 'numeric-id': idCounty.split('Q')[1],
+                                         'id': idCounty},
+                               'type': 'wikibase-entityid'},
+                                                'datatype': 'wikibase-item'}, 'type': 'statement',
+                                   'rank': 'normal'}],
+                           'P25': [{'mainsnak': {'snaktype': 'value', 'property': 'P25', 'datavalue': {
+                               'value': {'entity-type': 'item', 'numeric-id': typeEvent.split("Q")[1],
+                                         'id': typeEvent},
+                               'type': 'wikibase-entityid'},
+                                                 'datatype': 'wikibase-item'}, 'type': 'statement',
+                                    'rank': 'normal'}]}
 
-                        }
+            }
             wb.entity.update(newEntity["entity"]["id"], content=content)
             entities.append(newEntity["entity"]["id"])
 
     return entities;
+
+
+def createHasEvents():
+    hasevents = findEvents(listEvents)
+
+    result = []
+
+    for e in hasevents:
+        result.append({'mainsnak': {'snaktype': 'value', 'property': 'P17',
+                                    'datavalue': {
+                                        'value': {'entity-type': 'item', 'numeric-id': e.split('Q')[1], 'id': e},
+                                        'type': 'wikibase-entityid'}, 'datatype': 'wikibase-item'}, 'type': 'statement',
+                       'rank': 'normal'})
+
+    print(result)
+    return result
+
 
 def findEntity(label):
     r = wb.entity.search(label, 'es')['search']
@@ -114,6 +127,13 @@ def findEntity(label):
 
         wb.entity.update(newEntity["entity"]["id"], content=entityContent)
         return newEntity["entity"]["id"]
+
+def convertDamage(damage):
+    if "M" in damage:
+        return float(damage.split("M")[0]) * 1000000
+    if "K" in damage:
+        return float(damage.split("K")[0]) * 1000
+
 
 
 info = obtenerInfo(tornado)
@@ -135,9 +155,8 @@ lat = float(info[11].split('/')[0])
 lon = float(info[11].split('/')[1])
 deaths = info[15].split('/')[0]
 injuries = info[16].split('/')[0]
-propertyDamage = float(info[17].split("M")[0])
-print(propertyDamage)
-cropDamage = float(info[18].split("K")[0])
+propertyDamage = convertDamage(info[17])
+cropDamage = convertDamage(info[18])
 
 beginDateObject = datetime(int(añoBegin), int(mesBegin), int(beginDate.split(" ")[0].split("-")[2]),
                            int(beginDate.split(" ")[1].split(":")[0]), int(beginDate.split(" ")[1].split(":")[1]), 00,
@@ -158,8 +177,9 @@ idState.split('Q')[1]
 
 entity = wb.entity.add("item")
 
+print(beginDate.split(" ")[0] + "T" + beginDate.split(" ")[1])
 content = {
-    "labels": {"en": {"language": "en", "value": "tornado" + info[5] + " " + añoBegin + " " + entity['entity']['id']}},
+    "labels": {"en": {"language": "en", "value": "tornado " + info[5] + " " + añoBegin + " " + entity['entity']['id']}},
     "descriptions": {'en': {'language': 'en', 'value': 'weather event'}},
     "claims": {'P3': [{'mainsnak': {'snaktype': 'value', 'property': 'P3',
                                     'datavalue': {'value': {'entity-type': 'item', 'numeric-id': 5, 'id': 'Q5'},
@@ -207,7 +227,12 @@ content = {
                    'value': {'amount': cropDamage, 'unit': 'http://156.35.98.119/entity/Q14'},
                    'type': 'quantity'},
                                      'datatype': 'quantity'}, 'type': 'statement', 'rank': 'normal'}],
-               'P17': findEvents(listEvents),
+               'P17': createHasEvents(),
+
+               'P12': [{'mainsnak': {'snaktype': 'value', 'property': 'P12',
+                                     'datavalue': {'value': beginDate.split(" ")[0] + "T" + beginDate.split(" ")[1] + ":00",
+                                                   'type': 'string'},
+                                     'datatype': 'edtf'}, 'type': 'statement', 'rank': 'normal'}],
 
                'P26': [{'mainsnak': {'snaktype': 'value', 'property': 'P26',
                                      'datavalue': {'value': {'amount': lat, 'unit': '1'},
