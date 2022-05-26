@@ -77,5 +77,19 @@ class TornadoScrapping:
                                  00,
                                  00000)
         duration = "+" + str(int((endDateObject - beginDateObject).total_seconds()))
-        tornadoQuery = TornadoQuery(beginDate, county, duration)
+        tornadoQuery = TornadoQuery(beginDate, county, duration, scale)
         return tornadoQuery
+
+    def extraer_escala(self, contenido):
+        soup = BeautifulSoup(contenido, 'html.parser')
+        todos_tds = soup.find_all("td")
+
+        scale = ""
+
+        for i in range(len(todos_tds)):
+            contenidos_td = todos_tds[i].contents
+            if '-- Scale' in contenidos_td:
+                scale = todos_tds[i + 1].get_text()
+                break
+
+        return scale
