@@ -40,13 +40,11 @@ prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
 
 :ocheessee rdf:type :Event ;
     :beginDate "2021-01-27T08:36:00"^^xsd:dateTime ;
-    :eventState :Florida ;
     :eventCounty :Calhoun ;
     :typeEvent sophatmoc:FunnelCloud .
     
 :andrew rdf:type :Event ;
     :beginDate "2021-01-27T11:37:00"^^xsd:dateTime ;
-    :eventState :Florida ;
     :eventCounty :Leon ;
     :typeEvent st:Tornado .
 

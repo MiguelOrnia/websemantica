@@ -40,13 +40,11 @@ prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
 
 :eastTampa rdf:type :Event ;
     :beginDate "2021-04-10T16:36:00"^^xsd:dateTime ;
-    :eventState :Florida ;
     :eventCounty :Hillsborough ;
     :typeEvent :ThunderstormWind .
     
 :bartowMuniArp rdf:type :Event ;
     :beginDate "2021-04-10T17:15:00"^^xsd:dateTime ;
-    :eventState :Florida ;
     :eventCounty :Polk ;
     :typeEvent :ThunderstormWind .
 
