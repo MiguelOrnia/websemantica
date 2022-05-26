@@ -1,0 +1,11 @@
+{
+"apiUrl": "http://156.35.98.119/w/api.php",
+"oauthCredentials": {
+},
+"loginCredentials": {
+"botUsername": "Admin",
+"botPassword": "bot@9eomjq89fmimaa11t2gilnkh64ed398p"
+},
+"isBot": true,
+"summary": "Modified using python-wikibase"
+}

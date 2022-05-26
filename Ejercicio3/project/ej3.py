@@ -5,8 +5,6 @@ from extract_tornados.tornados_extractor import TornadoScrapping
 from util.fujita_scale_helper import FujitaScaleHelper
 
 """ Rutas para acceder a los ficheros que contienen las palabras clave a emplear """
-KEYWORDS_TRIPLES_LAND_PATH = "keywords_dictionaries/keywords_triples_land.txt"
-KEYWORDS_TRIPLES_MARINE_PATH = "keywords_dictionaries/keywords_triples_marine.txt"
 KEYWORDS_IN_CONTEXT_SPEED_PATH = "keywords_dictionaries/keywords_in_context_speed.txt"
 KEYWORDS_IN_CONTEXT_LAND_PATH = "keywords_dictionaries/keywords_in_context_land.txt"
 KEYWORDS_IN_CONTEXT_MARINE_PATH = "keywords_dictionaries/keywords_in_context_marine.txt"
@@ -30,9 +28,6 @@ def ej3():
 
         print("------------TEXTACY " + str(i + 1) + " --------------")
 
-        print("***textacy1 " + str(i + 1) + " ****")
-        textacy1_value = words_analyzer.textacy1(informes[i])
-
         print("***textacy2 " + str(i + 1) + " ****")
         file = open("keywords_dictionaries/keywords_in_context_speed.txt", "r")
         for line in file:
@@ -50,18 +45,13 @@ def ej3():
             if len(textacy2_value) > 0:
                 dic_textacy2[line.rstrip()] = textacy2_value
         print(dic_textacy2)
-        tornado = TornadoExtraction(ner_value, textacy1_value, dic_textacy2)
+        tornado = TornadoExtraction(ner_value, dic_textacy2)
         tornados.append(tornado)
-        print(tornado.textacy1)
         print(tornado.textacy2)
 
         # Analizar la info obtenida
         # NER
         tornado_values = extract_with_ner(tornado, {})
-
-        # TEXTACY1
-        tornado_values = extract_with_textacy1(tornado, tornado_values, KEYWORDS_TRIPLES_LAND_PATH, "isLand")
-        tornado_values = extract_with_textacy1(tornado, tornado_values, KEYWORDS_TRIPLES_MARINE_PATH, "isMarine")
 
         # TEXTACY2
         tornado_values = extract_speed_with_textacy2(tornado, tornado_values, KEYWORDS_IN_CONTEXT_SPEED_PATH, scale)
@@ -93,17 +83,6 @@ def extract_with_ner(tornado, tornadoValues):
     return tornadoValues
 
 
-def extract_with_textacy1(tornado, tornado_values, file, property):
-    file = open(file, "r")
-    for line in file:
-        for entity in tornado.textacy1:
-            if line.rstrip() in entity.subject:
-                tornado_values[property] = True
-            if line.rstrip() in entity.object:
-                tornado_values[property] = True
-    return tornado_values
-
-
 def extract_speed_with_textacy2(tornado, tornado_values, file, scale):
     file = open(file, "r")
     exist_speed = False
@@ -119,7 +98,7 @@ def extract_speed_with_textacy2(tornado, tornado_values, file, scale):
 
                 if len(speed_in_context) > 1:
                     for speed in speed_in_context:
-                        words = speed[0][0].split(" ")
+                        words = speed[0].split(" ")
                         value = int(words[len(words) - 2])
                         if fujita_scale_helper.check_speed_by_fujita_scale(value, scale):
                             max = value
