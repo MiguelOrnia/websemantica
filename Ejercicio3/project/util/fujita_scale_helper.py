@@ -1,4 +1,4 @@
-""" Clase encargada de comprobar cuestiones relacionada con la escala de Fujita ampliada"""
+""" Clase encargada de comprobar cuestiones relacionada con la escala de Fujita ampliada """
 
 
 class FujitaScaleHelper:

@@ -42,24 +42,6 @@ class WordsAnalyzer:
         return destilado
 
     """ Metodo de la clase WordsAnalyzer encargado de aplicar la funcionalidad de extraccion de informacion KWIC
-    (PALABRA CLAVE EN SU CONTEXTO). En este metodo se obtienen tripletas sujeto-verbo-objeto con textacy """
-
-    def textacy1(self, informe):
-        nlp = spacy.load('en_core_web_lg')
-
-        doc = nlp(informe)
-
-        entities = textacy.extract.triples.subject_verb_object_triples(doc)
-
-        contador = 0
-        for entity in entities:
-            print(entity)
-            contador += 1
-            if contador > 40:
-                break
-        return entities
-
-    """ Metodo de la clase WordsAnalyzer encargado de aplicar la funcionalidad de extraccion de informacion KWIC
     (PALABRA CLAVE EN SU CONTEXTO). En este metodo se obtiene una tupla con la palabra clave en su contexto en la 
     posicion central """
 
