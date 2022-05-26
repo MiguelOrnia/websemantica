@@ -1,0 +1,12 @@
+tree
+house
+street
+avenue
+road
+city
+town
+land
+roof
+building
+window
+door
