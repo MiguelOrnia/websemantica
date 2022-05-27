@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d9c0bec-0824-49ce-b66e-c65a87dcb834" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ej3.py" beforeDir="false" afterPath="$PROJECT_DIR$/ej3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extract_tornados/tornados_extractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_tornados/tornados_extractor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/fujita_scale_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/fujita_scale_helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wikibase/api_wikibase.py" beforeDir="false" afterPath="$PROJECT_DIR$/wikibase/api_wikibase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wikibase/config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ejercicio2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ejercicio2/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ejercicio2/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ejercicio2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ejercicio2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ejercicio2/.idea/pythonProject3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ejercicio2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ejercicio2/ejercicio2.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Ejercicio2/project" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -101,6 +102,7 @@
       <workItem from="1653567970971" duration="3685000" />
       <workItem from="1653579070074" duration="2170000" />
       <workItem from="1653586416320" duration="11164000" />
+      <workItem from="1653602946899" duration="61000" />
     </task>
     <servers />
   </component>

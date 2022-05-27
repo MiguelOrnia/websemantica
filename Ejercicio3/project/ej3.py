@@ -14,19 +14,19 @@ KEYWORDS_IN_CONTEXT_MARINE_PATH = "keywords_dictionaries/keywords_in_context_mar
 
 
 def ej3():
-    tornados_scrapping = TornadoExtractor()
+    tornados_extractor = TornadoExtractor()
     words_analyzer = WordsAnalyzer()
     api_wikibase = WikibaseApi()
     tornados = []
-    informes = tornados_scrapping.cargar_documentos()
+    informes = tornados_extractor.cargar_documentos()
 
     for i in range(len(informes)):
         dic_textacy2 = {}
         contenido = informes[i]
-        narrative = tornados_scrapping.extraer_narrativa(contenido)
-        scale = tornados_scrapping.extraer_escala(contenido)
+        narrative = tornados_extractor.extraer_narrativa(contenido)
+        scale = tornados_extractor.extraer_escala(contenido)
         informes[i] = narrative
-        tornado_query = tornados_scrapping.buscar_info(contenido)
+        tornado_query = tornados_extractor.buscar_info(contenido)
 
         print("-------------NER " + str(i + 1) + " --------------")
         # Lista con tipos: {'ORDINAL': OrderedDict([('first', 7), ('second', 3)])... #JSON

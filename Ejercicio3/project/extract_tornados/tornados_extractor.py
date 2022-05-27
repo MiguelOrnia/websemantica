@@ -12,7 +12,7 @@ class TornadoExtractor:
     """ Ubicacion de los HTML dentro del proyecto """
     HTML_PATH = "data/"
 
-    """ Constructor de la clase TornadoScrapping """
+    """ Constructor de la clase TornadoExtractor """
     def __init__(self):
         self.informes = []
 
