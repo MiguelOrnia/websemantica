@@ -88,5 +88,5 @@ class TornadoExtractor:
                                  00000)
         scale = self.extraer_escala(contenido)
         duration = "+" + str(int((end_date_object - begin_date_object).total_seconds()))
-        tornado_query = TornadoQuery(begin_date, county, duration, scale)
+        tornado_query = TornadoQuery(begin_date, county, duration)
         return tornado_query

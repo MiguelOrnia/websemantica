@@ -65,7 +65,8 @@ def ej3():
         tornado_values = extract_type_with_textacy2(tornado, tornado_values, KEYWORDS_IN_CONTEXT_MARINE_PATH, "isMarine")
 
         print(tornado_values)
-        api_wikibase.set_tornado_values(tornado_query, int(tornado_values['speedWind']), get_land_or_marine(tornado_values))
+        api_wikibase.set_tornado_values(tornado_query.get_query(), float(tornado_values['speedWind']), get_land_or_marine(tornado_values))
+
 
 
 """ Funcion encargada de comprobar si es marino o terrestre """
