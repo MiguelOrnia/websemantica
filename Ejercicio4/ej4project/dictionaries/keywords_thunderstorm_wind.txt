@@ -1,0 +1,7 @@
+report thunderstorm wind
+thunderstorm wind
+thunderstorms wind
+thunderstorm wind warning
+report tstm wnd
+tstm wnd
+tstm wnd warning

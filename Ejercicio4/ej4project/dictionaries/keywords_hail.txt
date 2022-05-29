@@ -1,0 +1,7 @@
+report hail
+hail
+hail warning
+golf
+tennis
+ping pong
+ball

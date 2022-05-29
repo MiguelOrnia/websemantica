@@ -1,0 +1,4 @@
+report thunderstorm
+thunderstorm
+thunderstorms
+thunderstorm warning
