@@ -1,6 +1,22 @@
-# Ejercicio 4 (16/05/2022)
-Explotar la funcionalidad NER, NEL, SVO, KWIC, de extraccion de terminos y phrase matching para, a partir del texto de colecciones tuits, rellenar campos de la instancia Wikibase. Aqui tambien puede ser interesante utilizar Numerizer. 
-El ejercicio tiene tres variantes que seran asignadas aleatoriamente a distintos grupos y de las que cada grupo tendra que implementar unica y exclusivamente la que le sea asignada.
-1. Los tuits a utilizar seran los procedentes de la coleccion tweets-tornadoes-high_accuracy-expanded
-2. Los tuits a utilizar seran los procedentes de la coleccion tweets-Dayton-tornado-geolocated (utilizar todos los tuits, no solo los que detecte el clasificador del ejemplo 8 visto en clase).
-3. Los tuits a utilizar seran los procedentes de la coleccion tweets-tornadoes-high_accuracy-expanded pero publicados por cuentas verificadas (esa informacion esta disponible en el JSON).
+# Ejercicio 4: Rellenar el grafo de conocimiento con datos de Twitter
+## Datos utilizados para la realización del ejercicio
+Para llevar a cabo este ejercicio se ha hecho uso de los tweets proporcionados en el dataset siguiente: https://drive.google.com/file/d/1RY32b2ucUhIibd1OCkhTL2kluAeE8puI/view
+
+Básicamente se han extraído los tweets más completos (debían tener localización, fecha, tipo de evento y en algunos casos velocidad del viento) para crear eventos en nuestra instancia de Wikibase.
+
+## Librerías empleadas
+A continuación se van a enumerar las librerías utilizadas para desarrollar el ejercicio:
+- **Geopy**: La hemos aplicado para obtener una ciudad y estado dadas unas coordenadas
+- **Wikibase-api**: La hemos aplicado para poder realizar peticiones a nuestra instancia de Wikibase y poder insertar la información de los eventos analizados
+- **Numerizer**: La hemos empleado para poder convertir cifras representadas como una cadena de carácteres a un número
+
+## Estructura del proyecto
+- **data**: Contiene los HTML del dataset empleado
+- **keywords_dictionaries**: Palabras clave empleadas en KWIC. Se han divido en diferentes ficheros en función del tipo de evento
+- **extract_tuits**: Contiene una clase para extraer la información de los tweets
+- **analyze_tuits**: Contiene una clase para aplicar NER y KWIC sobre el tweet a analizar
+- **util**: Contiene una clase para tratar cadenas, para dar formato a la información a guardar, y otra para formatear fechas
+- **wikibase**: Contiene una clase para acceder a Wikibase
+
+## Consideraciones finales
+Como se mencionaba previamente, para que un tweet se considerase relevante y completo para crear el evento se han establecido las siguientes condiciones: Debe tener localización, debe tener una fecha asociada para poder trazar cuando se ha producido el evento, debe conocerse el tipo de evento acontecido y por último, aunque no es de aplicación en todos los casos, debe poderse conocer la velocidad del viento asociada al evento
