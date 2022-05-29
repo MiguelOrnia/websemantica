@@ -14,6 +14,7 @@ class TornadoQuery:
         query = "tornado " + self.county + " " + self.begindate.split(" ")[0].split("-")[0]
         return query
 
+    """ Metodo de la clase TornadoQuery que formatea una cadena a mayusculas """
     def formatear_mayusculas(self, cadena):
         primera_letra = False
         cadena_formateada = cadena[0]

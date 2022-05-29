@@ -29,7 +29,6 @@ def ej3():
         tornado_query = tornados_extractor.buscar_info(contenido)
 
         print("-------------NER " + str(i + 1) + " --------------")
-        # Lista con tipos: {'ORDINAL': OrderedDict([('first', 7), ('second', 3)])... #JSON
         ner_value = words_analyzer.ner(informes[i])
 
         print("------------TEXTACY " + str(i + 1) + " --------------")
@@ -50,12 +49,10 @@ def ej3():
             textacy2_value = words_analyzer.textacy2(informes[i], line.rstrip())
             if len(textacy2_value) > 0:
                 dic_textacy2[line.rstrip()] = textacy2_value
-        print(dic_textacy2)
+
         tornado = TornadoExtraction(ner_value, dic_textacy2)
         tornados.append(tornado)
-        print(tornado.textacy2)
 
-        # Analizar la info obtenida
         # NER
         tornado_values = extract_with_ner(tornado, {})
 
