@@ -3,13 +3,40 @@
 ## Estructura de los directorios empleados
 El ejercicio se compone de dos carpetas que se detallan a continuación:
 - **graphs**: Incluye los tres grafos de conocimiento (**RDF - ttl**) desarrollados.
-- **shex**: Incluye la **shape expression** correspondiente a los grafos de conocimiento creados.
+- **shex**: Incluye la **shape expression** correspondiente a los grafos de conocimiento creados y el Entity Schema creado para nuestra instancia de Wikibase.
 
 ## Tornados utilizados para el modelado y fuente de información usada
 Los tornados empleados (obtenidos de la **Storm Events Database**) para la elaboración de los grafos de conocimientos son los siguientes:
 - Datos del **grafo de conocimiento 1:** https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=936510
 - Datos del **grafo de conocimiento 2:** https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=993011
 - Datos del **grafo de conocimiento 3:** https://www.ncdc.noaa.gov/stormevents/eventdetails.jsp?id=943554
+
+## Marcadores empleados para los grafos de conocimiento
+
+Para almacenar información sobre los eventos y episodios nos hemos basado en los marcadores primarios y secundarios proporcionados en la asignatura:
+- **enhancedFujitaScale**: Escala de Fujita Ampliada que sirve para medir la intensidad de un tornado 
+- **length**: Longitud del evento (medido en **millas**)
+- **width**: Ancho del evento (medido en **millas**)
+- **beginDate**: Fecha de inicio del evento
+- **location**: Ubicación donde ha acontecido el evento. En el se indican país, estado, condado y coordenadas
+- **personalDamage**: Daños personales ocasionados (medido en **doláres estadounidenses**)
+- **materialDamage**: Daños materiales ocasionados (medido en **doláres estadounidenses**)
+- **source**: Fuente de información de la que proviene el evento
+- **duration**: Duración del evento (medido en **segundos**)
+- **movementSpeed**: Velocidad de movimiento del evento alcanzada (medida en **millas por hora**)
+- **maxWindSpeed**: Máxima velocidad registrada por el evento (medida en **millas por hora**)
+- **isLand**: Determina si el evento es marino o terrestre
+- **hasEvents**: Eventos relacionados
+
+## Ontologías,tipos de datos y uso de Wikidata en los grafos de conocimiento
+
+En los tres grafos de conocimiento creados en este repositorio se han hecho uso de las siguientes ontologías, además de Wikidata. Por otro lado, para completar
+los tipos se han utilizado Schema.org y XML Schema:
+- Ontología **Sweet** de eventos metereológicos: Hemos empleado esta ontología para los tipos de eventos y la escala de Fujita Ampliada
+- Ontología **OM** para unidades: Hemos empleado esta ontología para indicar las unidades de los diferentes marcadores mencionados previamente
+- **Schema.org**: Se utiliza para el tipo de localización y estado
+- **XML Schema**: Se emplea para tipos como decimales, enteros, fecha y duración (en segundos)
+- **Wikidata**: Hemos empleado Wikidata para referenciar a algunos tipos como por ejemplo condado y país
 
 ## Instancia de Wikibase creada y rellenada con los tornados
 En nuestra instancia de **Wikibase** se introdujeron manualmente los tres tornados citados previamente. Los enlaces para acceder a dichos tornados son los siguientes:
