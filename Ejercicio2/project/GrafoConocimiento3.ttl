@@ -1,0 +1,54 @@
+prefix : <http://example.com/> 
+prefix st: <http://sweetontology.net/phenAtmoPrecipitation/>
+prefix sostst: <http://sweetontology.net/stateStorm/>
+prefix sophatmoc: <http://sweetontology.net/phenAtmoCloud/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+prefix wikidata: <http://www.wikidata.org/entity/>
+prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/>
+
+:tornado3 rdf:type st:Tornado ;
+    sostst:EnhancedFujitaScale sostst:EF1  ;
+    :length [ rdf:type om:Measure; om:hasNumericalValue "0.51"^^xsd:decimal; om:hasUnit om:mile-Statute ] ;
+    :width  [ rdf:type om:Measure; om:hasNumericalValue "50.0"^^xsd:decimal; om:hasUnit om:yard-International ] ;
+    schema:location :location ;
+    :beginDate     "2021-04-10T16:45:00"^^xsd:dateTime ;
+    :personalDamage :personalDamage ; 
+    :materialDamage :materialDamage ;
+    :source :NWSStormSurvey ;
+    :duration "PT60S"^^xsd:duration ;
+    :movementSpeed [ rdf:type om:Measure; om:hasNumericalValue "30.6"^^xsd:decimal; om:hasUnit om:mile-StatutePerHour ] ; 
+    :maxWindSpeed [ rdf:type om:Measure; om:hasNumericalValue "0.0"^^xsd:decimal; om:hasUnit om:mile-StatutePerHour ] ; 
+    :isLand true ;
+    :hasEvents   :eastTampa, :bartowMuniArp .
+
+:materialDamage rdf:type :Damage;
+    :propertyDamage [ rdf:type om:Measure; om:hasNumericalValue "1000000.0"^^xsd:decimal; om:hasUnit om:UnitedStatesDollar ] ;
+    :cropDamage [ rdf:type om:Measure; om:hasNumericalValue "0.0"^^xsd:decimal; om:hasUnit om:UnitedStatesDollar ] .
+    
+:personalDamage rdf:type :Damage;
+    :injuries 1 ;
+    :deaths 0 .
+
+:location rdf:type schema:location;
+    :country :US ;
+    :state :Florida ;
+    :county :Manatee ;
+    :lat 27.4364 ;
+    :long -82.6084 .
+
+:eastTampa rdf:type :Event ;
+    :beginDate "2021-04-10T16:36:00"^^xsd:dateTime ;
+    :eventCounty :Hillsborough ;
+    :typeEvent :ThunderstormWind .
+    
+:bartowMuniArp rdf:type :Event ;
+    :beginDate "2021-04-10T17:15:00"^^xsd:dateTime ;
+    :eventCounty :Polk ;
+    :typeEvent :ThunderstormWind .
+
+:US rdf:type wikidata:Q6256 .
+:Florida rdf:type schema:state .
+:Hillsborough rdf:type wikidata:Q28575 .
+:Polk rdf:type wikidata:Q28575 .
