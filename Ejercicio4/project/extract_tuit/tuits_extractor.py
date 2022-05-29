@@ -1,20 +1,25 @@
 import json
-
 from extract_tuit.tuit_info import TuitInfo
+
+""" Clase TuitExtractor encargada de obtener la informacion de los tuits existentes en el dataset """
 
 
 class TuitExtractor:
+    """ Constante que almacena la ruta al dataset con tuis """
+    TUITS_FILE_PATH = "data/tweets-tornadoes-high_accuracy-expanded.ndjson"
+
     def __init__(self):
         self.tuits = []
 
-    def cargarTuits(self):
-        lineas = open("data/tweets-tornadoes-high_accuracy-expanded.ndjson", encoding="utf8").readlines()
-
+    """ Metodo de la clase TornadoExtractor encargado de cargar los diferentes tuits. En primer lugar, 
+     para agregar un tuit debe tener una localizacion, sino no se tiene en consideracion la informacion
+     que puede almacenar """
+    def cargar_tuits(self):
+        lineas = open(self.TUITS_FILE_PATH, encoding="utf8").readlines()
 
         for linea in lineas:
             tuit = json.loads(linea)
 
-            # Si el tuit tiene localización lo agregmos a tuits
             if tuit["place"] is not None:
                 full_text = tuit["full_text"]
                 created_at = tuit["created_at"]

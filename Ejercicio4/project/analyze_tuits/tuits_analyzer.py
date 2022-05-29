@@ -1,22 +1,24 @@
 import itertools
 import json
-from collections import OrderedDict, Counter
-from random import random
-
 import spacy
 import textacy
+from collections import OrderedDict, Counter
+from random import random
 from numerizer.numerizer import nlp
 from tqdm import tqdm
 
+""" Clase encargada de analizar los tuits disponibles en el dataset. Implementa dos funcionalidades 
+de extraccion de informacion diferentes, estas son las siguientes: NER y KWIC """
+
 
 class TuitsAnalyzer:
+    """ Metodo de la clase TuitsAnalyzer encargado de aplicar la funcionalidad de extraccion de informacion NER
+    (RECONOCIMIENTO DE ENTIDADES CON NOMBRE) """
+
     def ner(self, tuit):
         nlp = spacy.load("en_core_web_lg")
 
         destilado = {}
-
-        # Recordad, no se pasa a minúsculas puesto que la capitalización es muy
-        # importante para reconocer entidades con nombre
 
         doc = nlp(tuit)
 
@@ -47,9 +49,9 @@ class TuitsAnalyzer:
 
         return destilado
 
-    # TEXTACY
-
-    """Extracción de keywords in context (palabras clave en su contexto)"""
+    """ Metodo de la clase WordsAnalyzer encargado de aplicar la funcionalidad de extraccion de informacion KWIC
+    (PALABRA CLAVE EN SU CONTEXTO). En este metodo se obtiene una tupla con la palabra clave en su contexto en la 
+    posicion central """
 
     def textacy2(self, tuit, keyword):
         kwics = []
@@ -67,11 +69,11 @@ class TuitsAnalyzer:
 
         return entities_list
 
-    """YAKE método utilizado para obtener terminología de interés (palabras clave)"""
+    """ Metodo de la clase WordsAnalyzer utilizado para obtener terminología de interes (palabras clave). Se ha 
+    empleado para rellenar los diccionarios de palabras clave empleados """
 
     def yake(self, tuits):
         random.shuffle(tuits)
-
         concatenacion_tuits = ""
 
         with tqdm(total=len(tuits)) as barra:

@@ -1,4 +1,4 @@
-""" Clase TornadoExtraction donde se almacena la informacion extraida con NER y KWIC """
+""" Clase TuitExtraction donde se almacena la informacion extraida con NER y KWIC """
 
 
 class TuitExtraction:
