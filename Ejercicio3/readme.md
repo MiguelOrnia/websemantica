@@ -12,7 +12,7 @@ A continuación se van a enumerar las librerías utilizadas para desarrollar el 
 - **Numerizer**: La hemos empleado para poder convertir cifras representadas como una cadena de carácteres a un número
 
 ## Funcionalidades de extracción de información utilizadas
-Para capturar la información requerida hemos aplicado NER y KWIC. En el primer caso nos ha permitido obtener cantidades fundamentalmente (útil para extraer la velocidad del viento de un evento) y en el segundo caso nos ha resultado útil para poder extraer información sobre si el tornado ha sido marino o terrestre, además de poder corroborar la información obtenida con NER.
+Para capturar la información requerida hemos aplicado **NER** y **KWIC**. En el primer caso nos ha permitido obtener cantidades fundamentalmente (útil para extraer la velocidad del viento de un evento) y en el segundo caso nos ha resultado útil para poder extraer información sobre si el tornado ha sido marino o terrestre, además de poder corroborar la información obtenida con NER.
 
 ## Estructura del proyecto
 - **data**: Contiene los HTML del dataset empleado
