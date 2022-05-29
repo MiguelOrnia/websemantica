@@ -1,13 +1,13 @@
 import re
-from datetime import datetime
 from numerizer.numerizer import numerize
 from analyze_tuits.tuits_analyzer import TuitsAnalyzer
 from extract_tuit.tuits_extractor import TuitExtractor
 from tuit_extraction import TuitExtraction
 from util.date_helper import DateHelper
 from util.strings_helper import StringsHelper
-from wiki.api_wikibase import WikibaseApi
-from wiki.api_wikidata import WikidataApi
+from wikibase.api_wikibase import WikibaseApi
+from wikibase.api_wikidata import WikidataApi
+from geopy.geocoders import Nominatim
 
 """ Rutas para acceder a los ficheros que contienen las palabras clave a emplear """
 KEYWORDS_COASTAL_FLOOD_PATH = "keywords_dictionaries/keywords_coastal_flood.txt"
@@ -33,7 +33,7 @@ WIKIDATA_URL = 'https://www.wikidata.org'
 
 def ej4():
     tuits_extractor = TuitExtractor()
-    tuits = tuits_extractor.cargarTuits()
+    tuits = tuits_extractor.cargar_tuits()
     tuits_analyzer = TuitsAnalyzer()
     date_helper = DateHelper()
     tornados = []
@@ -127,7 +127,7 @@ def ej4():
         tuit_extraction = TuitExtraction(ner_value, dic_textacy2)
         tornados.append(tuit)
 
-        tuit_values = extract_with_ner(tuit_extraction, {})
+        tuit_values = extract_with_ner(tuit_extraction, {}, date_helper)
 
         tuit_values = extract_speed_with_textacy2(tuit_extraction, tuit_values, KEYWORDS_SPEED_PATH)
         tuit_values = extract_time_with_textacy2(tuit_extraction, tuit_values, KEYWORDS_TIME_PATH)
@@ -156,7 +156,8 @@ def ej4():
 
         event = check_event(tuits[i], tuit_values, date_helper)
 
-        create_event(event, date_helper)
+        if event is not None:
+            create_event(event, date_helper)
 
 
 def check_event(tuit_info, tuit_values, date_helper):
@@ -200,15 +201,14 @@ def check_event(tuit_info, tuit_values, date_helper):
     else:
         if info["type_event"] == "tornado":
             return None
-    print("TUIT FINAL")
-    print(info)
+
     return info
 
 
 """ Funcion encargada de recoger los valores obtenidos con NER """
 
 
-def extract_with_ner(tuit, tuit_values):
+def extract_with_ner(tuit, tuit_values,date_helper):
     if "TIME" in tuit.ner:
         time_ner = tuit.ner["TIME"]
         for time in time_ner:
@@ -247,7 +247,6 @@ def extract_speed_with_textacy2(tuit, tuit_values, file):
                     for speed in speed_in_context:
                         speed_new = speed[0].strip()
                         words = speed_new.split(" ")
-                        print((words[len(words) - 1]))
                         if calculate_number(words[len(words) - 1]) is not None:
                             value = float(calculate_number(words[len(words) - 1]))
                         else:
@@ -255,7 +254,7 @@ def extract_speed_with_textacy2(tuit, tuit_values, file):
 
                 else:
                     speed_new = speed_in_context[0][0].strip()
-                    words = speedNew.split(" ")
+                    words = speed_new.split(" ")
                     if calculate_number(words[len(words) - 1]) is not None:
                         value = float(calculate_number(words[len(words) - 1]))
                     else:
@@ -331,64 +330,44 @@ def create_event(event_info, date_helper):
     id_property_state = wikibase_api.get_id_by_query('state', 'property')
     id_property_latitude = wikibase_api.get_id_by_query('latitude', 'property')
     id_property_longitude = wikibase_api.get_id_by_query('longitude', 'property')
-    id_property_begin_date = wikibase_api.get_id_by_query('beginDate', 'property')
-    id_property_wiki_data = api_wikibase.get_id_by_query('urlWikiData', 'property')
+    id_property_begin_date = wikibase_api.get_id_by_query('eventDate', 'property')
+    id_property_wiki_data = wikibase_api.get_id_by_query('urlWikiData', 'property')
 
     coordinates = str(event_info['latitude']) + ' , ' + str(event_info['longitude'])
+    geolocator = Nominatim(user_agent="Wikibase")
     location = geolocator.reverse(coordinates)
-    address = location.raw['address']
-    city = address.get('city', '')
-    state = address.get('state', '')
+    if location is not None:
+        address = location.raw['address']
+        county = address.get('county', '')
 
-    event_name = event_info['date'].split("/")[2] + " " + city + ' ' + event_info['date'] + ' ' + event_info['time']
-    event = wikibase_api.insert({"labels": {
-        "en": {"language": "en", "value": label}},
-        "descriptions": {'en': {'language': 'en', 'value': event_name}}})
+        event_name = event_info['date'].split("/")[2] + " " + county + ' ' + event_info['date'] + ' ' + event_info['time']
+        event = wikibase_api.insert({"labels": {
+            "en": {"language": "en", "value": event_name}}})
 
-    type_event = wikibase_api.get_id_by_query(event_info['type_event'])
+        type_event = wikibase_api.get_id_by_query(event_info['type_event'])
 
-    if len(type_event) == 0:
-        new_type_event = wikibase_api.insert({"labels": {"en": {"language": "en", "value":
-            strings_helper.formatear_minusculas(event_info['typeEvent'])}}})
-        type_event = new_type_event['entity']['id']
-        wikibase_api.add_claim(new_type_event['entity']['id'], id_property_instance_of,
-                               {'entity-type': 'item',
-                                'id': wikibase_api.get_id_by_query('atmospheric phenomenon')})
+        if len(type_event) == 0:
+            new_type_event = wikibase_api.insert({"labels": {"en": {"language": "en", "value":
+                strings_helper.formatear_minusculas(event_info['typeEvent'])}}})
+            type_event = new_type_event['entity']['id']
+            wikibase_api.add_claim(new_type_event['entity']['id'], id_property_instance_of,
+                                   {'entity-type': 'item',
+                                    'id': wikibase_api.get_id_by_query('atmospheric phenomenon')})
 
-    wikibase_api.add_claim(event['entity']['id'], wikibase_api.get_id_by_query('typeEvent', 'property'),
-                           {'entity-type': 'item', 'id': type_event})
+        wikibase_api.add_claim(event['entity']['id'], wikibase_api.get_id_by_query('typeEvent', 'property'),
+                               {'entity-type': 'item', 'id': type_event})
 
-    if len(wikibase_api.get_id_by_query(state)) == 0:
-        results = wikidata_api.search(state)
-        instance_of_result = wikidata_api.search('instance of', 'property')[0]['id']
-        state_result = wikidata_api.search('United States state')[0]['id']
+        wikibase_api.add_claim(event['entity']['id'], id_property_latitude,
+                               {'amount': event_info['latitude'], 'unit': '1'})
+        wikibase_api.add_claim(event['entity']['id'], id_property_longitude,
+                               {'amount': event_info['longitude'], 'unit': '1'})
 
-        for result in results:
-            result_id = result['id']
-            property_instance_of = wikidata_api.get_property_by_item(result_id, instance_of_result)[0]
-            instance_of_value_id = property_instance_of['mainsnak']['datavalue']['value']['id']
-            if state_result in instance_of_value_id:
-                new_state = wikibase_api.insert({"labels": {"en": {"language": "en", "value": state}}})
-                wikibase_api.add_claim(new_state['entity']['id'], id_property_wiki_data, WIKIDATA_URL
-                                       + '/wiki/Item:' + result_id)
-                wikibase_api.add_claim(new_state['entity']['id'], id_property_instance_of,
-                                       {'entity-type': 'item', 'id': wikibase_api.get_id_by_query('state')})
-                break
-    else:
-        wikibase_api.add_claim(event['entity']['id'], id_property_state,
-                               {'entity-type': 'item', 'id': wikibase_api.get_id_by_query(state)})
+        begin_date = date_helper.format_wikibase_date(event_info['date'], event_info['time'])
+        wikibase_api.add_claim(event['entity']['id'], id_property_begin_date, begin_date)
 
-    wikibase_api.add_claim(event['entity']['id'], id_property_latitude,
-                           {'amount': event_info['latitude'], 'unit': '1'})
-    wikibase_api.add_claim(event['entity']['id'], id_property_longitude,
-                           {'amount': event_info['longitude'], 'unit': '1'})
-
-    begin_date = date_helper.format_wikibase_date(event_info['date'], event_info['time'])
-    wikibase_api.add_claim(event['entity']['id'], id_property_begin_date, begin_date)
-
-    if "speed_wind" in event_info:
-        id_property_max_wind_speed_event = wikibase_api.get_id_by_query('maxWindSpeed', 'property')
-        wikibase_api.add_claim(event['entity']['id'], id_property_max_wind_speed_event,
-                               {'amount': event_info['speed_wind'], 'unit': WIKIBASE_URL + '/entity/'
-                                                                            + wikibase_api.get_id_by_query(
-                                   'Miles Per Hour')})
+        if "speed_wind" in event_info:
+            id_property_max_wind_speed_event = wikibase_api.get_id_by_query('maxWindSpeed', 'property')
+            wikibase_api.add_claim(event['entity']['id'], id_property_max_wind_speed_event,
+                                   {'amount': event_info['speed_wind'], 'unit': WIKIBASE_URL + '/entity/'
+                                                                                + wikibase_api.get_id_by_query(
+                                       'Miles Per Hour')})

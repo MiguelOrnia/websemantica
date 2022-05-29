@@ -1,5 +1,5 @@
 """ Clase DateHelper encargada de cuestiones relacionadas con fechas """
-
+from datetime import datetime
 
 class DateHelper:
     def __init__(self):
@@ -64,6 +64,6 @@ class DateHelper:
     """ Metodo que formatea la fecha para incluirla en Wikibase """
     def format_wikibase_date(self, date, time):
         date_fragmentada = date.split('/')
-        date_formateada = date_fragmentada[2] + '-' + date_fragmentada[0]+ '-' + date_fragmentada[1] + 'T'
-        time_formateado = time + ':00'
+        date_formateada = date_fragmentada[2] + '-' + date_fragmentada[0]+ '-' + date_fragmentada[1] + ' '
+        time_formateado = time
         return date_formateada + time_formateado
