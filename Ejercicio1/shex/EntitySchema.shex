@@ -1,4 +1,6 @@
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix wdt: <http://156.35.98.119/prop/direct/>;
+prefix wd: <http://156.35.98.119/entity/>;
 
 <tornado> {
    wdt:P3 [wd:Q5]  ;
