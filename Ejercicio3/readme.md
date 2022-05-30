@@ -22,5 +22,8 @@ Para capturar la información requerida hemos aplicado **NER** y **KWIC**. En el
 - **util**: Contiene una clase para tratar cadenas, para dar formato a la información a guardar
 - **wikibase**: Contiene una clase para acceder a Wikibase
 
+## Enlace a la instancia de Wikibase
+Este es el enlace para acceder a la instancia de Wikibase utilizada: http://156.35.98.119/wiki/Main_Page
+
 ## Consideraciones finales
 En los casos en los que no hemos obtenido explícitamente en la narrativa del evento la velocidad, se ha optado por calcular la velocidad que ha alcanzado en función de su escala de Fujita ampliada, dado que para cada valor de esta escala tiene asociados un valor máximo y mínimo. Por otro lado, con ambos extremos también hemos podido verificar si la velocidad obtenida del párrafo informativo es adecuada o no para la escala de ese tornado. Fuente utilizada: https://www.weather.gov/tae/ef_scale
