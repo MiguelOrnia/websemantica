@@ -1,0 +1,75 @@
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+<tornado> {
+   wdt:P3 [wd:Q5]  ;
+   wdt:P18 [wd:Q29 wd:Q7 wd:Q25 wd:Q26 wd:Q27 wd:Q28] ; 
+   wdt:P9  @<length> ; 
+   wdt:P10 @<width>; 
+   wdt:P5 @<country>  ; 
+   wdt:P6 @<state> ; 
+   wdt:P8 @<county> ; 
+   wdt:P16 xsd:string ; 
+   wdt:P15 @<duration> ;
+   wdt:P21 xsd:integer ; 
+   wdt:P22 xsd:integer ; 
+   wdt:P23 @<propertyDamage>; 
+   wdt:P24 @<cropDamage>; 
+   wdt:P17 @<Event> * ; 
+   wdt:P12 xsd:dateTime ; 
+   wdt:P26 xsd:decimal ; 
+   wdt:P27 xsd:decimal ; 
+   wdt:P28 @<movementSpeed>; 
+   wdt:P29 @<maxWinSpeed>;  
+   wdt:P30 [:Land :Marine] ; 
+}
+
+<country> {
+  wdt:P3 wd:Q68 ;
+}
+
+<state> {
+  wdt:P3 wd:Q70 ;
+}
+
+<county> {
+  wdt:P3 wd:Q69 ;
+}
+
+<event> {
+  wdt:P25 .* ;
+}
+
+<duration>{
+     wdt:P15 xsd:integer ;
+     unit:Q13
+}
+
+<movementSpeed>{
+     wdt:P28 xsd:integer ;
+     unit:Q59
+}
+
+<maxWindSpeed>{
+     wdt:P29 xsd:integer ;
+     unit:Q59
+}
+
+<length>{
+     wdt:P29 xsd:decimal ;
+     unit:Q8
+}
+
+<width>{
+     wdt:P29 xsd:decimal ;
+     unit:Q9
+}
+
+<propertyDamage>{
+     wdt:P23 xsd:decimal ;
+     unit:Q14
+}
+
+<cropDamage>{
+     wdt:P24 xsd:decimal ;
+     unit:Q14
+}
