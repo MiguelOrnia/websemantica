@@ -18,6 +18,9 @@ A continuación se van a enumerar las librerías utilizadas para desarrollar el 
 - **util**: Contiene una clase para tratar cadenas, para dar formato a la información a guardar, y otra para formatear fechas
 - **wikibase**: Contiene una clase para acceder a Wikibase
 
+## Enlace a la instancia de Wikibase
+Este es el enlace para acceder a la instancia de Wikibase utilizada: http://156.35.98.119/wiki/Main_Page
+
 ## Consideraciones finales
 Como se mencionaba previamente, para que un tweet se considerase relevante y completo para crear el evento se han establecido las siguientes condiciones: Debe tener localización, debe tener una fecha asociada para poder trazar cuando se ha producido el evento, debe conocerse el tipo de evento acontecido y por último, aunque no es de aplicación en todos los casos, debe poderse conocer la velocidad del viento asociada al evento.
 
