@@ -22,3 +22,5 @@ A continuación se van a enumerar las librerías utilizadas para desarrollar el 
 Como se mencionaba previamente, para que un tweet se considerase relevante y completo para crear el evento se han establecido las siguientes condiciones: Debe tener localización, debe tener una fecha asociada para poder trazar cuando se ha producido el evento, debe conocerse el tipo de evento acontecido y por último, aunque no es de aplicación en todos los casos, debe poderse conocer la velocidad del viento asociada al evento.
 
 Por otra parte, cabe destacar que en algunos casos se ha detectado que, aún teniendo coordenadas, su ubicación era imprecisa apuntando a localizaciones no trazables (veáse un océano), por lo que en esos casos también se ha descartado el tweet.
+
+Por último, no se ha podido aplicar sobre la totalidad del dataset, pero se ha podido realizar sobre un subconjunto de este. Esto se debe a que nuestra instancia de Wikibase emitía un error de no permitir más peticiones HTTP seguidas, por lo que se ha realizado sobre un subconjunto de 2000 tweets.
